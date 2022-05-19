@@ -1,18 +1,24 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    
+  <div>
+    <up-coming></up-coming>
+    <popular-list></popular-list>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-
+import PopularList from '@/components/PopularList.vue'
+import UpComing from '@/components/UpComing.vue'
 
 export default {
-  name: 'HomeView',
-  components: {
-    
-  }
+  name:'HomeView',
+  components:{
+    PopularList,
+    UpComing,
+  },
+
 }
 </script>
+ 
+<style>
+
+</style>
