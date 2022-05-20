@@ -5,6 +5,7 @@
       <div>
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link>    
+        <router-link to="/login">login</router-link>
         <button @click="darkModeToggle">darkMode</button>
       </div>
     </nav>
