@@ -9,6 +9,8 @@
         <label for="password">password</label>
         <input type="password" id="password" v-model="credentials.password">
         <button >로그인</button>
+        <router-link to="/signup">회원가입</router-link>
+        
       </div>
     </form>
   </div>
