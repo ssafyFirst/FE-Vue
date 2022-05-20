@@ -45,6 +45,20 @@ export default {
         router.push({name:'home'})
       })    
     },
+    signup ({ dispatch }, credentials) {
+      axios({
+        url : drf.accounts.signup(),
+        method : 'post',
+        data : credentials
+      })
+      .then(res => {
+        dispatch('saveToken', res.data.key)
+        dispatch('fetchCurrentUser')
+        router.push({name:'home'})
+      })
+
+    },
+
     fetchCurrentUser ({ commit, getters, dispatch}) { // user 식별 위해
       if (getters.isLoggedIn) {
         axios({
@@ -53,7 +67,7 @@ export default {
           headers: getters.authHeader
         })
         .then(res => {
-          console.log(res)
+          
           commit('SET_CURRENT_USER', res.data)
         })
         .catch( err => {

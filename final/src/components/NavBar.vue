@@ -6,6 +6,7 @@
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link>    
         <router-link to="/login">login</router-link>
+        <log-out></log-out>
         <button @click="darkModeToggle">darkMode</button>
       </div>
     </nav>
@@ -14,8 +15,13 @@
 </template>
 
 <script>
+import LogOut from '@/components/LogOut.vue'
+
 export default {
   name:'NavBar',
+  components:{
+    LogOut
+  },
   mounted() {
     if(window && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.documentElement.classList.add("darkmode");
