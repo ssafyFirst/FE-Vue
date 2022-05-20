@@ -28,9 +28,13 @@ export default {
   actions:{
     saveToken ({ commit }, token) {
       commit('SET_TOKEN', token)
+      
+      localStorage.setItem('token', token)   // 새로고침 후에도 유지
+      
     },
     removeToken ({ commit }) {
       commit('SET_TOKEN', '')
+      localStorage.setItem('token', '')
     },
 
     login ({dispatch}, credentials) {
@@ -58,7 +62,18 @@ export default {
       })
 
     },
-
+    logout ({ getters, dispatch}) {
+      axios({
+        url:drf.accounts.logout(),
+        method:'post',
+        headers: getters.authHeader
+      })
+      .then(() => {
+        dispatch('removeToken')
+        alert('로그아웃 성공!')
+        router.push({name:'login'})
+      })
+    },
     fetchCurrentUser ({ commit, getters, dispatch}) { // user 식별 위해
       if (getters.isLoggedIn) {
         axios({
