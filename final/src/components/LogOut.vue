@@ -25,7 +25,7 @@ export default {
     if (this.isLoggedIn) {
       this.logout()
     } else {
-      alert('!!!!')
+      
       this.$router.back()
     }
   }

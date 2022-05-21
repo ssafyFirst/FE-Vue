@@ -7,7 +7,8 @@ import axios from 'axios'
 export default {
   state:{
     token : localStorage.getItem('token') || '',
-    currentUser: {}
+    currentUser: {},
+    
 
   },
   getters:{
@@ -58,10 +59,22 @@ export default {
       .then(res => {
         dispatch('saveToken', res.data.key)
         dispatch('fetchCurrentUser')
-        router.push({name:'home'})
+        router.push({name:'signup2'})
       })
 
     },
+    signup2 ({ getters, dispatch } ,credentials) {
+      axios({
+        url : drf.accounts.signup2(),
+        method : 'put',
+        headers : getters.authHeader, 
+        data : credentials,
+      })
+      .then( () => {
+        dispatch()
+      })
+    },
+
     logout ({ getters, dispatch}) {
       axios({
         url:drf.accounts.logout(),
