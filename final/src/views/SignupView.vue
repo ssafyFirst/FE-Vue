@@ -13,13 +13,17 @@
         <label for="password2">password2</label>
         <input type="password" id="password2" v-model="credentials.password2">
       </div>
-      <input type="file">
+      <input type="file" ref="file" @change.prevent="selectFile">
+       <!-- <input type="number" v-model="credentials.like_actors">
+       <input type="number" v-model="credentials.like_genres"> -->
+
       <button>회원가입</button>
     </form>
   </div>
 </template>
 
 <script>
+// import http from '../http-common'
 import { mapActions } from 'vuex'
 
 export default {
@@ -30,12 +34,19 @@ export default {
         username: '',
         password1: '',
         password2: '',
-        image: ''
+        image: undefined
       }
     }
   },
   methods:{
-    ...mapActions(['signup'])
+    ...mapActions(['signup']),
+    selectFile (event) {
+      const formData = new FormData()
+      formData.append('files', event.target.files[0])
+      console.log(formData)
+      this.credentials.image = formData
+      console.log(this.credentials.image)
+    }
   }
 
 }
