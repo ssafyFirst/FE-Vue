@@ -31,9 +31,9 @@ const routes = [
     component: SignupMoreView
   },
   {
-    path: '/profile',
+    path: '/profile/:username',
     name: 'profile',
-    component: ProfileView.vue
+    component: ProfileView
   },
   // {
   //   path: '/',

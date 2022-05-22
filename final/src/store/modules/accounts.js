@@ -8,14 +8,15 @@ export default {
   state:{
     token : localStorage.getItem('token') || '',
     currentUser: {},
-    
-
+    profile : {}
   },
   getters:{
     isLoggedIn : state => !!state.token,
     authHeader  (state) {
       return {Authorization: `Token ${state.token}`}
     },
+    profile: state => state.profile,
+    currentUser : state => state.currentUser
 
     
   },
@@ -24,6 +25,7 @@ export default {
       state.token = token
     },
     SET_CURRENT_USER : (state, user) => state.currentUser = user,
+    SET_PROFILE : (state, profile) => state.profile = profile
     
   },
   actions:{
@@ -50,12 +52,12 @@ export default {
         router.push({name:'home'})
       })    
     },
-    signup ({ dispatch }, credentials) {
-      console.log(credentials)
+    signup ({ dispatch }, formData) {
+      console.log(formData)
       axios({
         url : drf.accounts.signup(),
         method : 'post',
-        data : credentials,
+        data : formData,
         // headers:{
         //   'Content-Type':'multipart/form-data'
         // }
@@ -110,6 +112,17 @@ export default {
           }
         })
       }
+    },
+    fetchProfile ({ commit, getters }, { username }) {
+      axios({
+        url: drf.accounts.profile(username),
+        method: 'get',
+        headers: getters.authHeader
+      })
+      .then( res => {
+        commit('SET_PROFILE', res.data)
+        console.log(res)
+      })
     }
   }
 }

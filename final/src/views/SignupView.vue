@@ -1,17 +1,17 @@
 <template>
   <div>회원가입
-    <form @submit.prevent="signup(credentials)">
+    <form @submit.prevent="signup(formData)">
       <div>
         <label for="username">username</label>
-        <input type="text" id="username" v-model="credentials.username">
+        <input type="text" id="username" v-model="credentials.username" >
       </div>
       <div>
         <label for="password1">password1</label>
-        <input type="password" id="password1" v-model="credentials.password1">
+        <input type="password" id="password1" v-model="credentials.password1" >
       </div>
       <div>
         <label for="password2">password2</label>
-        <input type="password" id="password2" v-model="credentials.password2">
+        <input type="password" id="password2" v-model="credentials.password2" >
       </div>
       <input type="file" ref="file" @change.prevent="selectFile">
        <!-- <input type="number" v-model="credentials.like_actors">
@@ -24,28 +24,32 @@
 
 <script>
 // import http from '../http-common'
-import { mapActions } from 'vuex'
+// import { mapActions } from 'vuex'
 
 export default {
   name:'SignupView',
   data() {
+    const formData = new FormData()
     return{
       credentials:{
         username: '',
         password1: '',
         password2: '',
-        image: undefined
-      }
+      },
+      formData : formData
     }
   },
   methods:{
-    ...mapActions(['signup']),
+    signup () {
+      this.formData.append("username", this.credentials.username)
+      this.formData.append("password1", this.credentials.password1)
+      this.formData.append("password2", this.credentials.password2)
+      this.$store.dispatch('signup', this.formData)
+      console.log(this.formData)
+    },
     selectFile (event) {
-      const formData = new FormData()
-      formData.append('files', event.target.files[0])
-      console.log(formData)
-      this.credentials.image = formData
-      console.log(this.credentials.image)
+      console.log(event.target.files[0])
+      this.formData.append('files', event.target.files[0])       
     }
   }
 

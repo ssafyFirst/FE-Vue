@@ -6,7 +6,7 @@
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link>    
         <div v-if="isLoggedIn">
-          <router-link to="/profile">profile</router-link>
+          <router-link :to="{ name: 'profile' }">profile</router-link>
           <log-out></log-out>
         </div>
         <div v-else>
