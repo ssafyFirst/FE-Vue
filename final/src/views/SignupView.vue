@@ -49,7 +49,7 @@ export default {
     },
     selectFile (event) {
       console.log(event.target.files[0])
-      this.formData.append('files', event.target.files[0])       
+      this.formData.append('profile_img', event.target.files[0])       
     }
   }
 

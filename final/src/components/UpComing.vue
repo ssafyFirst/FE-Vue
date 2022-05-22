@@ -1,11 +1,24 @@
 <template>
   <div>
-    <up-coming-item
-    v-for="movie in upcomingMovie"
-    :key="movie.id"
-    :movie="movie"
-    ></up-coming-item>
+    <b-carousel
+    id="carousel-fade"
+    style="text-shadow: 0px 0px 2px #000"
+    fade
+    indicators
+    interval="4000"
+    img-width="1024"
+    img-height="480"
+  >
+      <up-coming-item
+      v-for="( movie, index) in upcomingMovie"
+      :key="movie.id"
+      :movie="movie"
+      :index="index"
+      ></up-coming-item>
+    
+  </b-carousel>
   </div>
+  
 </template>
 
 <script>
