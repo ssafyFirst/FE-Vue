@@ -5,29 +5,38 @@
       <div>
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link>    
-        <router-link to="/login">login</router-link>
-        <log-out></log-out>
+        <div v-if="isLoggedIn">
+          <router-link to="/profile">profile</router-link>
+          <log-out></log-out>
+        </div>
+        <div v-else>
+          <router-link to="/login">login</router-link>
+        </div>
         <button @click="darkModeToggle">darkMode</button>
       </div>
     </nav>
     <router-view/>
+    
   </div>
 </template>
 
 <script>
 import LogOut from '@/components/LogOut.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name:'NavBar',
   components:{
-    LogOut
+    LogOut,
+    
   },
-  data () {
-    return {
-      isLoggedIn: this.$store.getters.isLoggedIn
-    }
+  computed :{
+    ...mapGetters(['isLoggedIn'])
   },
   mounted() {
+    
+
+
     if(window && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.documentElement.classList.add("darkmode");
     } else {

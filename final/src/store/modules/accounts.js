@@ -56,14 +56,14 @@ export default {
         url : drf.accounts.signup(),
         method : 'post',
         data : credentials,
-        headers:{
-          'Content-Type':'multipart/form-data'
-        }
+        // headers:{
+        //   'Content-Type':'multipart/form-data'
+        // }
       })
       .then(res => {
         dispatch('saveToken', res.data.key)
         dispatch('fetchCurrentUser')
-        // router.push({name:'signup2'})
+        router.push({name:'signup2'})
         console.log(res.data.key)
       })
 

@@ -21,14 +21,14 @@ export default {
   computed:{
     ...mapGetters(['isLoggedIn'])
   },
-  created() {
-    if (this.isLoggedIn) {
-      this.logout()
-    } else {
+  // created() {
+  //   if (this.isLoggedIn) {
+  //     this.logout()
+  //   } else {
       
-      this.$router.back()
-    }
-  }
+  //     this.$router.back()
+  //   }
+  // }
 
 }
 </script>
