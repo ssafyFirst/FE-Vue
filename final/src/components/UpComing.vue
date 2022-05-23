@@ -5,7 +5,7 @@
     style="text-shadow: 0px 0px 2px #000"
     fade
     indicators
-    interval="4000"
+    interval=4000
     img-width="1024"
     img-height="480"
   >

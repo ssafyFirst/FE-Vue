@@ -25,7 +25,9 @@ export default {
 
     SET_MOVIE : (state, movie) => state.movie = movie,
 
-    SET_COMMENTS : (state, comments) => state.movie.comments = comments
+    SET_COMMENTS : (state, comments) => state.movie.comments = comments,
+
+    SET_MOVIE_COMMENTS : (state, comments) => state.movie.comments = comments
   },
   actions:{
     fetchMovies ({ commit }) {
@@ -77,21 +79,21 @@ export default {
         실패하면
           에러 메시지 표시
       */
-      const comment = data.content
+      const comment = {content : data.content}
 
       axios({
-        url: drf.articles.comment(5),
+        url: drf.movies.comment(data.moviePk, data.commentPk),
         method: 'put',
         data: comment,
         headers: getters.authHeader,
       })
         .then(res => {
-          commit('SET_ARTICLE_COMMENTS', res.data)
+          commit('SET_MOVIE_COMMENTS', res.data)
         })
         .catch(err => console.error(err.response))
     },
 
-    deleteComment({ commit, getters }) {
+    deleteComment({ commit, getters }, data) {
       /* 댓글 삭제
       사용자가 확인을 받고
         DELETE: comment URL (token)
@@ -102,13 +104,13 @@ export default {
       */
         if (confirm('정말 삭제하시겠습니까?')) {
           axios({
-            url: drf.articles.comment(4),
+            url: drf.movies.comment(data.moviePk, data.commentPk),
             method: 'delete',
             data: {},
             headers: getters.authHeader,
           })
             .then(res => {
-              commit('SET_ARTICLE_COMMENTS', res.data)
+              commit('SET_MOVIE_COMMENTS', res.data)
             })
             .catch(err => console.error(err.response))
         }
