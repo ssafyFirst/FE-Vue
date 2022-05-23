@@ -21,11 +21,11 @@ export default {
     ...mapGetters(['movies']),
   },
   methods:{       // 교수님 콜
-    ...mapActions(['fetchMovie']),
+    ...mapActions(['fetchMovies']),
     test() {
         setTimeout(() => {
            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight ) { 
-          this.fetchMovie()   
+          this.fetchMovies()   
       }
           console.log(2)  
         }, 1000);
@@ -33,7 +33,7 @@ export default {
   },
 
   created() {
-    this.fetchMovie()
+    this.fetchMovies()
   },
 
   mounted() {

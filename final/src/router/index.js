@@ -5,7 +5,7 @@ import LoginView from '@/views/LoginView.vue'
 import SignupView from '@/views/SignupView.vue'
 import SignupMoreView from '@/views/SignupMoreView.vue'
 import ProfileView from '@/views/ProfileView.vue'
-
+import MovieDetailView from '@/views/MovieDetailView.vue'
 
 Vue.use(VueRouter)
 
@@ -35,11 +35,11 @@ const routes = [
     name: 'profile',
     component: ProfileView
   },
-  // {
-  //   path: '/',
-  //   name: 'home',
-  //   component: HomeView
-  // },
+  {
+    path: '/detail/:movieId',
+    name: 'moviedetail',
+    component: MovieDetailView
+  },
   // {
   //   path: '/',
   //   name: 'home',
