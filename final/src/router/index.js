@@ -26,7 +26,7 @@ const routes = [
     component: SignupView
   },
   {
-    path: '/signup2',
+    path: '/signup2/:username',
     name: 'signup2',
     component: SignupMoreView
   },

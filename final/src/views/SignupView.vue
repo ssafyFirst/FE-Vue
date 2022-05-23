@@ -14,8 +14,15 @@
         <input type="password" id="password2" v-model="credentials.password2" >
       </div>
       <input type="file" ref="file" @change.prevent="selectFile">
-       <!-- <input type="number" v-model="credentials.like_actors">
-       <input type="number" v-model="credentials.like_genres"> -->
+       <p>좋아하는 장르</p>
+       
+         <gerne-list-item
+         v-for="gerne in gernes"
+         :key="gerne.id"
+         :gerne="gerne"
+         @add-gerne="getGerne">
+         </gerne-list-item>
+       
 
       <button>회원가입</button>
     </form>
@@ -25,9 +32,15 @@
 <script>
 // import http from '../http-common'
 // import { mapActions } from 'vuex'
+import axios from 'axios'
+import drf from '@/api/drf'
+import GerneListItem from '@/components/GerneListItem.vue'
 
 export default {
   name:'SignupView',
+  components:{
+    GerneListItem,
+  },
   data() {
     const formData = new FormData()
     return{
@@ -36,22 +49,41 @@ export default {
         password1: '',
         password2: '',
       },
-      formData : formData
+      formData : formData,
+      gernes : [],
+      mygernes : []
     }
   },
   methods:{
+    getGerne (gerne) {
+      this.mygernes.push(gerne)
+    },
+    
     signup () {
       this.formData.append("username", this.credentials.username)
       this.formData.append("password1", this.credentials.password1)
       this.formData.append("password2", this.credentials.password2)
       this.$store.dispatch('signup', this.formData)
-      console.log(this.formData)
+      
     },
     selectFile (event) {
-      console.log(event.target.files[0])
+      
       this.formData.append('profile_img', event.target.files[0])       
     }
+  },
+  created () {
+    axios({
+        url:drf.movies.gernes(),
+        method:'get',
+        
+      })
+      .then( res => {
+        console.log(res.data)
+        this.gernes = res.data
+      })
+    
   }
+  
 
 }
 </script>

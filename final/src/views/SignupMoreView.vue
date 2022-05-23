@@ -1,6 +1,6 @@
 <template>
   <div>signup2
-    <form @submit.prevent="signup2">
+    <form @submit.prevent="signup2(credentials)">
       <input type="text" v-model="credentials.like_actors">
       <input type="text" v-model="credentials.like_genres">
       <button></button>
@@ -19,8 +19,9 @@ export default {
     return {
       credentials:{
         like_actors : NaN,
-        like_genres : NaN
-      }
+        like_genres : NaN,
+        username : this.$route.params.username
+      },
     }
   },
   methods:{

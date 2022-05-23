@@ -7,7 +7,7 @@ import axios from 'axios'
 export default {
   state:{
     token : localStorage.getItem('token') || '',
-    currentUser: localStorage.getItem('currentUser') || '',
+    currentUser: {},
     profile : {}
   },
   getters:{
@@ -53,7 +53,6 @@ export default {
       })    
     },
     signup ({ dispatch }, formData) {
-      console.log(formData)
       axios({
         url : drf.accounts.signup(),
         method : 'post',
@@ -65,19 +64,25 @@ export default {
       .then(res => {
         dispatch('saveToken', res.data.key)
         dispatch('fetchCurrentUser')
-        router.push({name:'signup2'})
-        console.log(res.data.key)
+        
+        // router.push({name:'signup2', params: {username : getters.username}})
+        
       })
 
     },
-    signup2 ({ getters, dispatch } ,credentials) {
+    signup2 ({ getters, dispatch }, credentials) {
       axios({
-        url : drf.accounts.signup2(),
+        url : drf.accounts.signup2(credentials.username),
         method : 'put',
         headers : getters.authHeader, 
         data : credentials,
+        // xsrfCookieName: 'XSRF-TOKEN', // 기본값
+
+        // // `xsrfHeaderName`은 xsrf 토큰 값을 운반하는 HTTP 헤더의 이름입니다.
+        // xsrfHeaderName: 'X-XSRF-TOKEN',
       })
-      .then( () => {
+      .then( (res) => {
+        console.log(res)
         dispatch()
       })
     },
@@ -102,9 +107,9 @@ export default {
           headers: getters.authHeader
         })
         .then(res => {
-          console.log(res)
+          
           commit('SET_CURRENT_USER', res.data)
-          localStorage.setItem('currentUser', res.data)
+          
         })
         .catch( err => {
           if (err.response.status === 401) {
@@ -124,6 +129,17 @@ export default {
         commit('SET_PROFILE', res.data)
         console.log(res)
       })
-    }
+    },
+    fetchGernes () {
+      axios({
+        url:drf.movies.gernes(),
+        method:'get',
+        
+      })
+      .then( res => {
+        console.log(res.data)
+      })
+    },
+    
   }
 }
