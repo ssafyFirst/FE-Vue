@@ -7,7 +7,7 @@ import axios from 'axios'
 export default {
   state:{
     token : localStorage.getItem('token') || '',
-    currentUser: {},
+    currentUser: localStorage.getItem('currentUser') || '',
     profile : {}
   },
   getters:{
@@ -102,8 +102,9 @@ export default {
           headers: getters.authHeader
         })
         .then(res => {
-          
+          console.log(res)
           commit('SET_CURRENT_USER', res.data)
+          localStorage.setItem('currentUser', res.data)
         })
         .catch( err => {
           if (err.response.status === 401) {
