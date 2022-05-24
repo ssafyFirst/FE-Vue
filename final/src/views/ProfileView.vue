@@ -1,9 +1,14 @@
 <template>
   <div>
-    <h1> 받아올 데이터 로그인한 유저의 데이터들</h1>
+    
+    <h2>{{ profile.username }}</h2>
+    <img :src=" url + profile.profile_img " alt="">
+    <h3>{{ profile.like_movies[0].title }}</h3>
+    
 
+    <router-link :to="{ name: 'recommend', params:  profile.username }">추천</router-link>
 
-
+    <router-view/>
   </div>
 </template>
 
@@ -12,6 +17,11 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name:'ProfileView',
+  data () {
+    return {
+      url : "http://127.0.0.1:8000"
+    }
+  },
   computed : {
     ...mapGetters(['profile'])
   },

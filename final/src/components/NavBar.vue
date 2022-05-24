@@ -6,7 +6,7 @@
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link>    
         <div v-if="isLoggedIn">
-          <router-link :to="{ name: 'profile' }">profile</router-link>
+          <router-link :to="{ name: 'profile', params: { username } }">profile</router-link>
           <log-out></log-out>
         </div>
         <div v-else>
@@ -31,7 +31,10 @@ export default {
     
   },
   computed :{
-    ...mapGetters(['isLoggedIn'])
+    ...mapGetters(['isLoggedIn', 'currentUser']),
+    username() {
+        return this.currentUser.username ? this.currentUser.username : 'guest'
+      },
   },
   mounted() {
     

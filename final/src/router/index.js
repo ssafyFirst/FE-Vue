@@ -6,6 +6,7 @@ import SignupView from '@/views/SignupView.vue'
 import SignupMoreView from '@/views/SignupMoreView.vue'
 import ProfileView from '@/views/ProfileView.vue'
 import MovieDetailView from '@/views/MovieDetailView.vue'
+import RecommendMovieView from '@/views/RecommendMovieView'
 
 Vue.use(VueRouter)
 
@@ -40,11 +41,11 @@ const routes = [
     name: 'moviedetail',
     component: MovieDetailView
   },
-  // {
-  //   path: '/',
-  //   name: 'home',
-  //   component: HomeView
-  // },
+  {
+    path: '/recommend/:username',
+    name: 'recommend',
+    component: RecommendMovieView
+  },
   // {
   //   path: '/',
   //   name: 'home',

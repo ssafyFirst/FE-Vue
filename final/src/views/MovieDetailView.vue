@@ -1,6 +1,22 @@
 <template>
   <div>moviedetail
     {{ movie.overview }}
+    <br>
+    {{ movie.poster_path }}
+    <br>
+    {{ movie.released_data }}
+    <br>
+    {{ movie.actor1 }}
+    <br>
+    {{ movie.actor2 }}
+
+    <div>
+      Likeit:
+      <button
+        @click="likeMovie(movieId)"
+      >{{ likeCount }}</button>
+    </div>
+    
   
     <form @submit.prevent="addComment">
       <input type="text" v-model="content">

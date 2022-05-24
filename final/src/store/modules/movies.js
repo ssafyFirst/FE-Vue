@@ -9,14 +9,16 @@ export default {
     movies: [],
     page: 0,
     movie : {},
-    comments : []
+    comments : [],
+    recommendMovies : []
 
   },
   getters:{
     movies: state => state.movies,
     page: state => state.page,
     movie: state => state.movie,
-    comments : state => state.movie.comments
+    comments : state => state.movie.comments,
+    recommendMovies : state => state.recommendMovies
   },
   mutations:{
     FETCH_MOVIES: (state, movies) => state.movies.push(...movies),
@@ -27,7 +29,9 @@ export default {
 
     SET_COMMENTS : (state, comments) => state.movie.comments = comments,
 
-    SET_MOVIE_COMMENTS : (state, comments) => state.movie.comments = comments
+    SET_MOVIE_COMMENTS : (state, comments) => state.movie.comments = comments,
+
+    SET_RECOMMEND : (state, recommendMovies) => state.recommedMovies = recommendMovies
   },
   actions:{
     fetchMovies ({ commit }) {
@@ -114,8 +118,32 @@ export default {
             })
             .catch(err => console.error(err.response))
         }
-      
-
+    },
+    likeMovie({ commit, getters }, moviePk) {
+      /* 좋아요
+      POST: likeArticle URL(token)
+        성공하면
+          state.article 갱신
+        실패하면
+          에러 메시지 표시
+      */
+      axios({
+        url: drf.movies.likeMovie(moviePk),
+        method: 'post',
+        headers: getters.authHeader,
+      })
+        .then(res => commit('SET_MOVIE', res.data))
+        .catch(err => console.error(err.response))
+    },
+    fetchRecommend ({commit, getters} ,username) {
+      axios({
+        url : drf.movies.recommend(username),
+        method : 'get',
+        headers : getters.authHeader
+      })
+      .then( res => {
+        commit('SET_RECOMMEND', res.data)
+      })
     }
   }
 }
