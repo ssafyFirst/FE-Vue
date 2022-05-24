@@ -4,7 +4,7 @@ const ACCOUNTS = 'accounts/'
 const MOVIES = 'movies/'
 const COMMENTS = 'comments/'
 const MOVIE = 'movies/'
-const GERNES = 'gernes/'
+const GENRES = 'genres/'
 
 export default {
   accounts: {
@@ -26,6 +26,6 @@ export default {
     comments: moviePk => HOST + MOVIE + `${moviePk}/` + COMMENTS,
     comment: (moviePk, commentPk) =>
       HOST + MOVIE + `${moviePk}/` + COMMENTS + `${commentPk}/`,
-    gernes: () => HOST + MOVIE + GERNES,
+    genres: () => HOST + MOVIE + GENRES,
   },
 }

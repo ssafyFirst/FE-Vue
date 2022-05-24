@@ -16,15 +16,15 @@
       <input type="file" ref="file" @change.prevent="selectFile">
        <p>좋아하는 장르</p>
        
-         <gerne-list-item
-         v-for="gerne in gernes"
-         :key="gerne.id"
-         :gerne="gerne"
-         @add-gerne="getGerne">
-         </gerne-list-item>
+         <genre-list-item
+         v-for="genre in genres"
+         :key="genre.id"
+         :genre="genre"
+         @add-genre="getGenre">
+         </genre-list-item>
        
 
-      <button>회원가입</button>
+      <button @click.prevent="signup(formData)">회원가입</button>
     </form>
   </div>
 </template>
@@ -34,12 +34,12 @@
 // import { mapActions } from 'vuex'
 import axios from 'axios'
 import drf from '@/api/drf'
-import GerneListItem from '@/components/GerneListItem.vue'
+import GenreListItem from '@/components/GenreListItem.vue'
 
 export default {
   name:'SignupView',
   components:{
-    GerneListItem,
+    GenreListItem,
   },
   data() {
     const formData = new FormData()
@@ -48,21 +48,27 @@ export default {
         username: '',
         password1: '',
         password2: '',
+        
       },
       formData : formData,
-      gernes : [],
-      mygernes : []
+      genres : [],
+      mygenres : []
     }
   },
+  computed:{
+
+  },
   methods:{
-    getGerne (gerne) {
-      this.mygernes.push(gerne)
+    getGenre (genre) {
+      this.mygenres.push(genre.id)
     },
     
     signup () {
       this.formData.append("username", this.credentials.username)
       this.formData.append("password1", this.credentials.password1)
       this.formData.append("password2", this.credentials.password2)
+      this.formData.append("like_genres", this.mygenres)
+      console.log(this.mygenres)
       this.$store.dispatch('signup', this.formData)
       
     },
@@ -73,13 +79,13 @@ export default {
   },
   created () {
     axios({
-        url:drf.movies.gernes(),
+        url:drf.movies.genres(),
         method:'get',
         
       })
       .then( res => {
         console.log(res.data)
-        this.gernes = res.data
+        this.genres = res.data
       })
     
   }

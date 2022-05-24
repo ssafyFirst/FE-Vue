@@ -130,9 +130,9 @@ export default {
         console.log(res)
       })
     },
-    fetchGernes () {
+    fetchGenres () {
       axios({
-        url:drf.movies.gernes(),
+        url:drf.movies.genres(),
         method:'get',
         
       })
