@@ -1,10 +1,9 @@
 <template>
   <div>
-    <nav class="d-flex justify-content-between">
+    <b-nav class="justify-content-between bg-info sticky-top">
       <div>Movie</div>
       <div>
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link>    
+        <router-link to="/">Home</router-link>
         <div v-if="isLoggedIn">
           <router-link :to="{ name: 'profile', params: { username } }">profile</router-link>
           <log-out></log-out>
@@ -26,7 +25,7 @@
       >
       <map-item></map-item>
       </b-sidebar>
-    </nav>
+    </b-nav>
     <router-view/>
     
   </div>

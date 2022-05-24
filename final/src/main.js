@@ -5,12 +5,13 @@ import router from './router'
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-
+import VueGeolocationApi from 'vue-geolocation-api'
 
 
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
 Vue.use(BootstrapVue, BootstrapVueIcons)
+Vue.use(VueGeolocationApi)
 
 Vue.config.productionTip = false
 
