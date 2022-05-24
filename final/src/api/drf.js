@@ -5,6 +5,7 @@ const MOVIES = 'movies/'
 const COMMENTS = 'comments/'
 const MOVIE = 'movies/'
 const GENRES = 'genres/'
+const ACTOR = 'actors/'
 
 export default {
   accounts: {
@@ -29,4 +30,7 @@ export default {
     genres: () => HOST + MOVIE + GENRES,
     recommend : (username) => HOST + MOVIE + 'recommendation/' +`${username}/`
   },
+  actors : {
+    actors : (page) => HOST + ACTOR + `${page}`,
+  }
 }

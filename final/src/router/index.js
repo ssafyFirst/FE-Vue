@@ -7,6 +7,7 @@ import SignupMoreView from '@/views/SignupMoreView.vue'
 import ProfileView from '@/views/ProfileView.vue'
 import MovieDetailView from '@/views/MovieDetailView.vue'
 import RecommendMovieView from '@/views/RecommendMovieView'
+import ActorListView from '@/views/ActorListView'
 
 Vue.use(VueRouter)
 
@@ -46,11 +47,11 @@ const routes = [
     name: 'recommend',
     component: RecommendMovieView
   },
-  // {
-  //   path: '/',
-  //   name: 'home',
-  //   component: HomeView
-  // },
+  {
+    path: '/actors',
+    name: 'actors',
+    component: ActorListView
+  },
   // {
   //   path: '/',
   //   name: 'home',

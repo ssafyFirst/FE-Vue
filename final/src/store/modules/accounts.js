@@ -65,27 +65,27 @@ export default {
         dispatch('saveToken', res.data.key)
         dispatch('fetchCurrentUser')
         
-        // router.push({name:'signup2', params: {username : getters.username}})
+        router.push({name:'actors'})
         
       })
 
     },
-    signup2 ({ getters, dispatch }, credentials) {
-      axios({
-        url : drf.accounts.signup2(credentials.username),
-        method : 'put',
-        headers : getters.authHeader, 
-        data : credentials,
-        // xsrfCookieName: 'XSRF-TOKEN', // 기본값
+    // signup2 ({ getters, dispatch }, credentials) {
+    //   axios({
+    //     url : drf.accounts.signup2(credentials.username),
+    //     method : 'put',
+    //     headers : getters.authHeader, 
+    //     data : credentials,
+    //     // xsrfCookieName: 'XSRF-TOKEN', // 기본값
 
-        // // `xsrfHeaderName`은 xsrf 토큰 값을 운반하는 HTTP 헤더의 이름입니다.
-        // xsrfHeaderName: 'X-XSRF-TOKEN',
-      })
-      .then( (res) => {
-        console.log(res)
-        dispatch()
-      })
-    },
+    //     // // `xsrfHeaderName`은 xsrf 토큰 값을 운반하는 HTTP 헤더의 이름입니다.
+    //     // xsrfHeaderName: 'X-XSRF-TOKEN',
+    //   })
+    //   .then( (res) => {
+    //     console.log(res)
+    //     dispatch()
+    //   })
+    // },
 
     logout ({ getters, dispatch}) {
       axios({

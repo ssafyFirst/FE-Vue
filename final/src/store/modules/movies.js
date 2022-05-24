@@ -34,15 +34,15 @@ export default {
     SET_RECOMMEND : (state, recommendMovies) => state.recommedMovies = recommendMovies
   },
   actions:{
-    fetchMovies ({ commit }) {
+    fetchMovies ({ commit, getters }) {
       axios({
-        url: drf.movies.movies(this.getters.page),
+        url: drf.movies.movies(getters.page),
         method: 'get',
         // header: ____,
       })
         .then(res => {
           commit('FETCH_MOVIES', res.data)
-          commit('INCREASE_PAGE', this.getters.page)
+          commit('INCREASE_PAGE', getters.page)
         })
         .catch(err => console.error(err.response))
     },
