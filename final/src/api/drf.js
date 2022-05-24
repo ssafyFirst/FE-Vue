@@ -31,6 +31,8 @@ export default {
     recommend : (username) => HOST + MOVIE + 'recommendation/' +`${username}/`
   },
   actors : {
-    actors : (page) => HOST + ACTOR + `${page}`,
+    actors : (page) => HOST + ACTOR + `${page}/`,
+    movieactor : (actorPk) => HOST + ACTOR + `${actorPk}/`,
+    
   }
 }

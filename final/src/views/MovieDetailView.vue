@@ -1,14 +1,20 @@
 <template>
-  <div>moviedetail
+  <div>
+    <h1>{{ movie.title }}</h1>
     {{ movie.overview }}
     <br>
-    {{ movie.poster_path }}
+    <img :src="url + movie.poster_path" alt="">
+    
     <br>
     {{ movie.released_data }}
     <br>
-    {{ movie.actor1 }}
-    <br>
-    {{ movie.actor2 }}
+    <movie-actor-item
+    v-for="actor in movieactor"
+    :key="actor.id"
+    :actor="actor"
+    ></movie-actor-item>
+
+
 
     <div>
       Likeit:
@@ -29,18 +35,20 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import CommentList from '@/components/CommentList.vue'
+import MovieActorItem from '@/components/MovieActorItem.vue'
 
 export default {
   name: 'MovieDetailView',
-  components: { CommentList },
+  components: { CommentList, MovieActorItem },
     data() {
       return {
         movieId: this.$route.params.movieId,
-        content : ''
+        content : '',
+        url:'https://image.tmdb.org/t/p/w500/',
       }
     },
     computed: {
-      ...mapGetters(['movie', 'comments']),
+      ...mapGetters(['movie', 'comments', 'movieactor']),
       likeCount() {
         return this.movie.like_users?.length
       }
@@ -48,13 +56,19 @@ export default {
     methods: {
       ...mapActions([
         'fetchMovie',
-        'likeMovie',      
+        'likeMovie',
+        'fetchMovieActor'      
       ]),
       
       addComment () {
         const context = {
           movieId: this.movieId,
-          data: {content:this.content,}
+          data: {content:this.content,},
+          actorIds : {
+            actor1Id: '',
+            actor2Id: '',
+            actor3Id: ''
+          }
         }
         this.$store.dispatch('addComment', context)
         this.content = ''
@@ -63,6 +77,7 @@ export default {
     },
     created() {
       this.fetchMovie(this.movieId)
+      
     },
   
 }

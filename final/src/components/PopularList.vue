@@ -4,6 +4,7 @@
     :key="movie.pk"
     :movie="movie"
     ></popular-list-item>
+    <button @click="fetchMovies"> 더 보기 </button>
   </div>
 </template>
 
@@ -36,9 +37,9 @@ export default {
     this.fetchMovies()
   },
 
-  mounted() {
-    document.addEventListener('scroll', this.test)
-  }
+  // mounted() {
+  //   document.addEventListener('scroll', this.test)
+  // }
 }
           
 

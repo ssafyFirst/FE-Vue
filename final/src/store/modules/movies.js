@@ -10,15 +10,18 @@ export default {
     page: 0,
     movie : {},
     comments : [],
-    recommendMovies : []
-
+    recommendMovies : [],
+    movieactor : [],
+    
   },
   getters:{
     movies: state => state.movies,
     page: state => state.page,
     movie: state => state.movie,
     comments : state => state.movie.comments,
-    recommendMovies : state => state.recommendMovies
+    recommendMovies : state => state.recommendMovies,
+    movieactor : state => state.movieactor,
+    
   },
   mutations:{
     FETCH_MOVIES: (state, movies) => state.movies.push(...movies),
@@ -31,7 +34,11 @@ export default {
 
     SET_MOVIE_COMMENTS : (state, comments) => state.movie.comments = comments,
 
-    SET_RECOMMEND : (state, recommendMovies) => state.recommedMovies = recommendMovies
+    SET_RECOMMEND : (state, recommendMovies) => state.recommedMovies = recommendMovies,
+
+    SET_MOVIE_ACTOR : (state, actors) => state.movieactor = actors,
+
+    
   },
   actions:{
     fetchMovies ({ commit, getters }) {
@@ -46,18 +53,41 @@ export default {
         })
         .catch(err => console.error(err.response))
     },
-    fetchMovie ({ commit, getters }, movieId) {
+    fetchMovie ({ dispatch, commit, getters }, movieId) {
       axios({
         url:drf.movies.movie(movieId),
         method:'get',
         headers:getters.authHeader,
       })
-      .then(res => {commit('SET_MOVIE', res.data)
-      console.log(res.data)
-      
-    
-    })
+      .then(res => {
+        commit('SET_MOVIE', res.data)
+        const actors = [ 
+          res.data.actor1,
+          res.data.actor2,
+          res.data.actor3
+      ]
+        dispatch('fetchMovieActor', actors)
+      })
       .catch(err => console.error(err.response))
+    },
+    fetchMovieActor ({  commit, getters }, actors) {
+      let newactors = []
+      actors.forEach( actor => {
+        axios({
+          url:drf.actors.movieactor(actor),
+          method:'get',
+          headers:getters.authHeader
+        })
+        .then( res => {
+          newactors.push(res.data)
+        })
+        .catch( err => {
+          if (err.response.status === 404) {
+            console.log('!!')
+          }
+        })
+      })
+      commit('SET_MOVIE_ACTOR', newactors)
     },
     
     addComment ({ commit, getters }, context) {
