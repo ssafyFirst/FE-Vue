@@ -1,10 +1,9 @@
 <template>
   <div>
-    <nav class="d-flex justify-content-between">
+    <b-nav class="justify-content-between bg-info sticky-top">
       <div>Movie</div>
       <div>
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link>    
+        <router-link to="/">Home</router-link>
         <div v-if="isLoggedIn">
           <router-link :to="{ name: 'profile', params: { username } }">profile</router-link>
           <log-out></log-out>
@@ -18,13 +17,15 @@
 
       <b-sidebar
         id="sidebar-backdrop"
-        title="여기는 사이드바 입니다"
+        title="사이드바 입니다"
         :backdrop-variant="variant"
         backdrop
         shadow
+        right="True"
       >
+      <map-item></map-item>
       </b-sidebar>
-    </nav>
+    </b-nav>
     <router-view/>
     
   </div>
@@ -32,12 +33,14 @@
 
 <script>
 import LogOut from '@/components/LogOut.vue'
+import MapItem from '@/components/MapItem'
 import { mapGetters } from 'vuex'
 
 export default {
   name:'NavBar',
   components:{
     LogOut,
+    MapItem,
     
   },
   data() {

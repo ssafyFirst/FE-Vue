@@ -13,12 +13,12 @@
 export default {
   name:'PopularListItem',
   
-  data () {
+  data() {
     return {
       url:'https://image.tmdb.org/t/p/w500/'
     }
   },
-  props:{
+  props: {
     movie:Object
   },
   methods:{
