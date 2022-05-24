@@ -14,6 +14,16 @@
         </div>
         <button @click="darkModeToggle">darkMode</button>
       </div>
+      <b-icon icon="sliders" font-scale="3" v-b-toggle.sidebar-backdrop></b-icon>
+
+      <b-sidebar
+        id="sidebar-backdrop"
+        title="여기는 사이드바 입니다"
+        :backdrop-variant="variant"
+        backdrop
+        shadow
+      >
+      </b-sidebar>
     </nav>
     <router-view/>
     
@@ -29,6 +39,11 @@ export default {
   components:{
     LogOut,
     
+  },
+  data() {
+    return {
+      variant: 'dark',
+    }
   },
   computed :{
     ...mapGetters(['isLoggedIn', 'currentUser']),
