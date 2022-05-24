@@ -18,11 +18,13 @@
 
       <b-sidebar
         id="sidebar-backdrop"
-        title="여기는 사이드바 입니다"
+        title="사이드바 입니다"
         :backdrop-variant="variant"
         backdrop
         shadow
+        right="True"
       >
+      <map-item></map-item>
       </b-sidebar>
     </nav>
     <router-view/>
@@ -32,12 +34,14 @@
 
 <script>
 import LogOut from '@/components/LogOut.vue'
+import MapItem from '@/components/MapItem'
 import { mapGetters } from 'vuex'
 
 export default {
   name:'NavBar',
   components:{
     LogOut,
+    MapItem,
     
   },
   data() {
