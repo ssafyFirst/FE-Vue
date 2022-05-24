@@ -29,7 +29,8 @@ export default {
       HOST + MOVIE + `${moviePk}/` + COMMENTS + `${commentPk}/`,
     genres: () => HOST + MOVIE + GENRES,
     recommend : (username) => HOST + MOVIE + 'recommendation/' +`${username}/`,
-    actormovie : (moviePk) => HOST + MOVIE + 'actor/' + `${moviePk}/`
+    actormovie : (moviePk) => HOST + MOVIE + 'actor/' + `${moviePk}/`,
+    LikeGenres : (genrePk) => HOST + MOVIE + `${genrePk}/`
   },
   actors : {
     actors : (page) => HOST + ACTOR + `${page}/`,

@@ -119,18 +119,30 @@ export default {
         })
       }
     },
-    fetchProfile ({ commit, getters }, { username }) {
+    fetchProfile ({  commit, getters }, { username }) {
       axios({
         url: drf.accounts.profile(username),
         method: 'get',
         headers: getters.authHeader
       })
       .then( res => {
-        console.log(res.data)
         commit('SET_PROFILE', res.data)
-        console.log(res)
+        // dispatch('fetchLikeGenres', res.data.like_genres)
       })
     },
+    // fetchLikeGenres ({ commit, getters }, genres) {
+    //   genres.forEach( genre => {
+    //     axios({
+    //       url:drf.movies.LikeGenres(genre),
+    //       method:'get',
+    //       headers: getters.authHeader
+    //     })
+    //     .then(res => {
+    //       commit('SET_LIKE_GENRES', res.data)
+    //     })
+    //     .catch( err => console.log(res))
+    //   })
+    // },
     fetchGenres () {
       axios({
         url:drf.movies.genres(),
@@ -140,7 +152,6 @@ export default {
       .then( res => {
         console.log(res.data)
       })
-    },
-    
+    },    
   }
 }
