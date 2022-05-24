@@ -1,4 +1,8 @@
 <template>
+<div>
+  <b-button>개봉일</b-button>
+  <b-button>이름순</b-button>
+  <b-button>평점순</b-button>
   <div class="row">
     <popular-list-item v-for="movie in movies"
     :key="movie.pk"
@@ -6,6 +10,7 @@
     ></popular-list-item>
     <button @click="fetchMovies"> 더 보기 </button>
   </div>
+</div>
 </template>
 
 
@@ -15,6 +20,12 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name:'PopularList',
+  data () {
+    return {
+      
+      
+    }
+  },
   components:{
     PopularListItem,
   },
