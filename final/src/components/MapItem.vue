@@ -112,7 +112,8 @@ export default {
     }
   },
   created() {
-    this.geofind()
+    this.geofind(),
+    this.initMap()
   }
 };
 </script>
