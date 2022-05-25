@@ -8,7 +8,8 @@ export default {
   state:{
     token : localStorage.getItem('token') || '',
     currentUser: {},
-    profile : {}
+    profile : {},
+    authError: null,
   },
   getters:{
     isLoggedIn : state => !!state.token,
@@ -16,7 +17,8 @@ export default {
       return {Authorization: `Token ${state.token}`}
     },
     profile: state => state.profile,
-    currentUser : state => state.currentUser
+    currentUser : state => state.currentUser,
+    authError: state => state.authError,
 
     
   },
@@ -25,7 +27,8 @@ export default {
       state.token = token
     },
     SET_CURRENT_USER : (state, user) => state.currentUser = user,
-    SET_PROFILE : (state, profile) => state.profile = profile
+    SET_PROFILE : (state, profile) => state.profile = profile,
+    SET_AUTH_ERROR: (state, error) => state.authError = error
     
   },
   actions:{
@@ -41,7 +44,7 @@ export default {
       localStorage.setItem('token', '')
     },
 
-    login ({dispatch}, credentials) {
+    login ({ dispatch, commit }, credentials) {
       axios({
         url: drf.accounts.login(),
         method: 'post',
@@ -51,9 +54,13 @@ export default {
         dispatch('saveToken', res.data.key)
         dispatch('fetchCurrentUser')
         router.push({name:'home'})
-      })    
+      })
+      .catch(err => {
+        console.error(err.response.data)
+        commit('SET_AUTH_ERROR', err.response.data)
+      })         
     },
-    signup ({ dispatch }, formData) {
+    signup ({ dispatch, commit }, formData) {
       axios({
         url : drf.accounts.signup(),
         method : 'post',
@@ -65,9 +72,11 @@ export default {
       .then(res => {
         dispatch('saveToken', res.data.key)
         dispatch('fetchCurrentUser')
-        
-        router.push({name:'home'})
-        
+        router.push({name:'home'})    
+      })
+      .catch(err => {
+        console.error(err.response.data)
+        commit('SET_AUTH_ERROR', err.response.data)
       })
 
     },
@@ -153,6 +162,7 @@ export default {
       .then( res => {
         console.log(res.data)
       })
-    },    
+    },
+    
   }
 }

@@ -1,16 +1,25 @@
 <template>
-  <nav-bar></nav-bar>
+<div id="app">
+  <div v-if="isLoggedIn">
+    <nav-bar></nav-bar>
+  </div>
+  <router-view/>
+</div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
-import { mapActions} from 'vuex'
+// import LoginView from '@/views/LoginView.vue'
+import { mapActions, mapGetters} from 'vuex'
 
 
 export default {
   name:'App',
   components:{
-    NavBar,
+    NavBar
+  },
+  computed:{
+    ...mapGetters(['isLoggedIn'])
   },
   methods: {
     ...mapActions(['fetchCurrentUser', 'removeToken'])
@@ -30,14 +39,14 @@ export default {
 
 
 <style>
-<<<<<<< HEAD
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height:100vh;
+  height:100%;
 }
 
 nav {
@@ -55,6 +64,4 @@ nav a.router-link-exact-active {
 
 
 
-=======
->>>>>>> bdaf2f681a638c4f37d7eaafe2910e7866ece652
 </style>

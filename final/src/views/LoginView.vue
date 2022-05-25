@@ -1,57 +1,57 @@
 <template>
-  <div id="appMountPoint">
-    <div class="d-flex justify-content-center align-items-center" style="width: 100vw;">
-      <section class="login-box">
-        <h2 class="text-white">Sign In</h2>
-        <form class="mt-4">
-          <div class="mb-3 bg-white rounded px-2" >
-            <label for="exampleInputEmail1" class="form-label small-text">Email or Phone Number</label>
-            <input type="email" class="form-control border-0 p-0" id="exampleInputEmail1" aria-describedby="emailHelp">
-            
-          </div>
-          <div class="mb-3 bg-white rounded px-2">
-            <label for="exampleInputPassword1" class="form-label small-text">Password</label>
-            <input type="password" class="form-control border-0 p-0" id="exampleInputPassword1">
-          </div>
-          <a href="./landing.html" type="submit" class="btn btn-danger mt-3" style="width: 100%;">Sign In</a>
-          <div class="mb-3 mt-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label text-white small-text" for="exampleCheck1">Remember Me</label>
-          </div>
-          
-          <div class="mt-3 d-flex">
-            <!-- <img width="20px" src="./images/fb.png" alt=""> -->
-            <p class="m-0 small-text text-white mx-2">Login with Facebook</p>
-          </div>
-          <div class="mt-3 ">
-            <!-- <img width="20px" src="./images/fb.png" alt=""> -->
-            <p class="m-0  text-white"> <span style="color: rgba(212, 212, 212, 0.75);">New to Netflix?</span>  Sign up now.</p>
-            <p class="m-0 small-text text-white  mt-2"> <span style="color: rgba(212, 212, 212, 0.75);">This page is protected by Google reCAPTCHA to ensure you're not a bot. <a href="#"> Learn more.</a> </span> </p>
-          </div>
-        </form>
-      </section>
-    </div>
+<div class="login-wrapper hybrid-login-wrapper">
+  <div class="login-wrapper-background">
+    <img class="w-100 h-100" :src="url+path" alt="">
   </div>
-  <!-- <div>Login
-    <form @submit.prevent="login(credentials)">
-      <div>
-        <label for="username">username</label>
-        <input type="text" id="username" v-model="credentials.username">
+  <b-container style="height: 100vh">
+    <div class="position-absolute top-0  translate-middle-x pt-5">
+      <img src="@/assets/logo22.png" alt="Logo" class="pt-5" />
+    </div>
+
+    <div
+      class="text-white h-100 d-flex align-items-center justify-content-center"
+    >
+      <div style="background-color: #26282b" class="rounded p-5 w-50">
+        <div class="text-start">
+          <h1 class="mb-4">로그인</h1>
+        </div>
+        <div class="mb-3 text-start">
+          <label for="username" class="form-label">아이디</label>
+          <input
+            type="text"
+            id="username"
+            class="form-control"
+            v-model="credentials.username"
+          />
+        </div>
+        <div class="mb-3 text-start">
+          <label for="password" class="form-label">비밀번호</label>
+          <input
+            type="password"
+            @keyup.enter="login(credentials)"
+            id="password"
+            v-model="credentials.password"
+            class="form-control"
+          />
+        </div>
+        <div class="d-grid gap-2">
+          <b-button @click="login(credentials)" class="btn-login btn-block">LOGIN</b-button>
+          <router-link
+            :to="{ name: 'signup' }"
+            class="text-decoration-none text-white float-end">
+            <b-button class="btn-signup">Signup</b-button>
+          </router-link>      
+        </div>  
       </div>
-      <div>
-        <label for="password">password</label>
-        <input type="password" id="password" v-model="credentials.password">
-        <button >로그인</button>
-        <router-link to="/signup">회원가입</router-link>
-        
-      </div>
-    </form>
-  </div> -->
+    </div>
+  </b-container>
+</div>
 </template>
 
 <script>
-
+import * as _ from 'lodash'
 import { mapActions } from 'vuex'
+import axios from 'axios'
 
 export default {
   name: 'LoginView',
@@ -60,11 +60,29 @@ export default {
       credentials : {
         username: '',
         password: ''
-      }
+      },
+      url : 'https://image.tmdb.org/t/p/w500/',
+      path : ''
     }
   },
   methods: {
     ...mapActions(['login'])
+  },
+  created () {
+    axios({
+      url:'https://api.themoviedb.org/3/movie/now_playing/',
+      params:{
+        api_key:'7f292cc09a9aff763e3e54a81c1ec05a',
+        language:'ko'
+      },
+      method: 'get'
+    })
+    .then(res => {
+      let page = _.random(1,20)
+      this.path = res.data.results[page].backdrop_path
+      }
+    )
+    .catch(err => console.error(err))
   }
 
 }
