@@ -1,9 +1,13 @@
 <template>
-
-    <b-carousel-slide
-      :img-src="url + movie.poster_path"
-    ></b-carousel-slide>
-  </div>
+  
+    <div class="w-80">
+      <b-carousel-slide
+        :img-src="url + movie.poster_path"
+      ></b-carousel-slide>
+    </div>
+    <!-- <img :src="url + movie.poster_path" alt="" class=""> -->
+  
+  
 
 </template>
 

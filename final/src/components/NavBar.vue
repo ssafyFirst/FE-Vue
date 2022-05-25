@@ -1,9 +1,28 @@
 <template>
   <div>
-    <b-nav class="justify-content-between bg-info sticky-top">
-      <div>Movie</div>
-      <div>
-        <router-link to="/">Home</router-link>
+    <b-navbar class="justify-content-center" toggleable="lg" type="dark" variant="info">
+      <b-navbar-brand href="#">
+        <router-link to="/">Movie</router-link>
+      </b-navbar-brand>
+      <b-collapse id="nav-collapse" is-nav class="justify-content-end">
+        <b-navbar-nav>
+          <b-nav-item href="#">Link</b-nav-item>
+          <b-nav-item href="#" disabled>Disabled</b-nav-item>
+        </b-navbar-nav>
+
+        <!-- Right aligned nav items -->
+        <b-navbar-nav class="ml-auto">
+          <button @click="darkModeToggle">darkMode</button>
+          <b-icon icon="sliders" font-scale="3" v-b-toggle.sidebar-backdrop></b-icon>
+
+        <b-sidebar
+          id="sidebar-backdrop"
+          title="Profile"
+          :backdrop-variant="variant"
+          backdrop
+          shadow  
+          right="True"
+        >
         <div v-if="isLoggedIn">
           <router-link :to="{ name: 'profile', params: { username } }">profile</router-link>
           <log-out></log-out>
@@ -11,23 +30,16 @@
         <div v-else>
           <router-link  to="/login">login</router-link>
         </div>
-        <button @click="darkModeToggle">darkMode</button>
-      </div>
-      <b-icon icon="sliders" font-scale="3" v-b-toggle.sidebar-backdrop></b-icon>
-
-      <b-sidebar
-        id="sidebar-backdrop"
-        title="사이드바 입니다"
-        :backdrop-variant="variant"
-        backdrop
-        shadow  
-        right="True"
-      >
-      <map-item></map-item>
-      </b-sidebar>
-    </b-nav>
-    <router-view/>
-    
+        <b-nav-form class="">
+          <b-form-input size="sm" class="mr-sm-2 " placeholder="Search"></b-form-input>
+          <b-button size="sm" class="my-2 my-sm-0  " type="submit">Search</b-button>
+        </b-nav-form>
+        <map-item></map-item>         
+        </b-sidebar>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+  <router-view/>
   </div>
 </template>
 
