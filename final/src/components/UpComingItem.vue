@@ -1,12 +1,7 @@
 <template>
-  <div>
     <b-carousel-slide
       :img-src="url + movie.poster_path"
     ></b-carousel-slide>
-    <!-- <img :src="url + movie.poster_path" alt="" class=""> -->
-  
-  </div>
-
 </template>
 
 <script>
