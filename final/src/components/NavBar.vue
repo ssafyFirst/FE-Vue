@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar class="justify-content-center" toggleable="lg" type="dark" variant="info">
+    <b-navbar class="justify-content-center sticky-top" toggleable="lg" type="dark" variant="info">
       <b-navbar-brand href="#">
         <router-link to="/">
           <img class="w-50 h-50" src="@/assets/logo22.png" alt="">

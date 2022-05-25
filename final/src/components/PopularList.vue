@@ -6,13 +6,14 @@
     <button @click="changeKeyword" value="released_date">개봉일</button>
     <button @click="changeKeyword" value="vote_average">평점</button>
   </div>
-  <div class="row">
+  <b-card-group columns>
     <popular-list-item v-for="movie in movies"
     :key="movie.id"
     :movie="movie"
+    style="float: left;"
     ></popular-list-item>
-    <button @click="fetchSortedMovies(keyword)"> 더 보기 </button>
-  </div>
+  </b-card-group>
+  <button @click="fetchSortedMovies(keyword)"> 더 보기 </button>
 </div>
 </template>
 

@@ -1,14 +1,8 @@
 <template>
-  
-    <div class="w-80">
-      <b-carousel-slide
-        :img-src="url + movie.poster_path"
-      ></b-carousel-slide>
-    </div>
-    <!-- <img :src="url + movie.poster_path" alt="" class=""> -->
-  
-  
-
+  <b-carousel-slide
+    :img-src="url + movie.poster_path"
+    style="max-width:20%"
+  ></b-carousel-slide>
 </template>
 
 <script>
