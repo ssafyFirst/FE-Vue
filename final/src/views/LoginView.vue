@@ -35,11 +35,11 @@
           />
         </div>
         <div class="d-grid gap-2">
-          <b-button @click="login(credentials)" class="btn-login btn-block">LOGIN</b-button>
+          <b-button @click="login(credentials)" class="btn-login btn-block mt-2">LOGIN</b-button>
           <router-link
             :to="{ name: 'signup' }"
             class="text-decoration-none text-white float-end">
-            <b-button class="btn-signup">Signup</b-button>
+            <b-button class="btn-signup mt-3 w-50">Signup</b-button>
           </router-link>      
         </div>  
       </div>
