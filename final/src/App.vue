@@ -7,6 +7,7 @@ import NavBar from '@/components/NavBar.vue'
 import { mapActions} from 'vuex'
 
 
+
 export default {
   name:'App',
   components:{
@@ -30,7 +31,8 @@ export default {
 
 
 <style>
-<<<<<<< HEAD
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -52,9 +54,6 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+* { font-family: 나눔스퀘어, 'NanumSquare', sans-serif; }
 
-
-
-=======
->>>>>>> bdaf2f681a638c4f37d7eaafe2910e7866ece652
 </style>
