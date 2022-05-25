@@ -9,7 +9,7 @@
           <log-out></log-out>
         </div>
         <div v-else>
-          <router-link to="/login">login</router-link>
+          <router-link  to="/login">login</router-link>
         </div>
         <button @click="darkModeToggle">darkMode</button>
       </div>
@@ -20,7 +20,7 @@
         title="사이드바 입니다"
         :backdrop-variant="variant"
         backdrop
-        shadow
+        shadow  
         right="True"
       >
       <map-item></map-item>

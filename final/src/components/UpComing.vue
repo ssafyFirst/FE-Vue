@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <span>
   <b-carousel
     id="carousel-1"
@@ -15,6 +16,25 @@
     :movie="movie"
     :index="index"
     ></up-coming-item>
+=======
+  <div>
+    <b-carousel
+      id="carousel"
+      v-model="slide"
+      :interval="4000"
+      controls
+      indicators
+      img-width="400"
+      img-height="480"
+    >
+
+      <up-coming-item
+      v-for="( movie, index) in upcomingMovie"
+      :key="movie.id"
+      :movie="movie"
+      :index="index"
+      ></up-coming-item>
+>>>>>>> 2458e1f8f5e474da821d53e50df635f4f18ca7f2
   </b-carousel>
   </span>
 </template>
