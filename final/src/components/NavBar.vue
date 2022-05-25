@@ -1,5 +1,6 @@
 <template>
   <div>
+<<<<<<< HEAD
     <b-navbar class="justify-content-center" toggleable="lg" type="dark" variant="info">
       <b-navbar-brand href="#">
         <router-link to="/">Movie</router-link>
@@ -23,6 +24,12 @@
           shadow  
           right="True"
         >
+=======
+    <b-navbar toggleable="lg" type="dark" variant="info">
+      <div>Movie</div>
+      <div>
+        <router-link to="/">Home</router-link>
+>>>>>>> bdaf2f681a638c4f37d7eaafe2910e7866ece652
         <div v-if="isLoggedIn">
           <router-link :to="{ name: 'profile', params: { username } }">profile</router-link>
           <log-out></log-out>
@@ -30,6 +37,7 @@
         <div v-else>
           <router-link  to="/login">login</router-link>
         </div>
+<<<<<<< HEAD
         <b-nav-form class="">
           <b-form-input size="sm" class="mr-sm-2 " placeholder="Search"></b-form-input>
           <b-button size="sm" class="my-2 my-sm-0  " type="submit">Search</b-button>
@@ -40,6 +48,24 @@
       </b-collapse>
     </b-navbar>
   <router-view/>
+=======
+        <button @click="darkModeToggle">darkMode</button>
+      </div>
+      <b-icon icon="sliders" font-scale="3" v-b-toggle.sidebar-backdrop></b-icon>
+
+      <b-sidebar
+        id="sidebar-backdrop"
+        title="사이드바 입니다"
+        :backdrop-variant="variant"
+        backdrop
+        shadow  
+        right="True"
+      >
+      <map-item></map-item>
+      </b-sidebar>
+    </b-navbar>
+    <router-view/>
+>>>>>>> bdaf2f681a638c4f37d7eaafe2910e7866ece652
   </div>
 </template>
 

@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   
     <div class="w-80">
       <b-carousel-slide
@@ -9,6 +10,11 @@
   
   
 
+=======
+  <b-carousel-slide
+    :img-src="url + movie.poster_path"
+  ></b-carousel-slide>
+>>>>>>> bdaf2f681a638c4f37d7eaafe2910e7866ece652
 </template>
 
 <script>

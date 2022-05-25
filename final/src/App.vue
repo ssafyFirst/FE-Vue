@@ -1,8 +1,5 @@
 <template>
-  <div id="app">
-    <nav-bar></nav-bar>
-    
-  </div>
+  <nav-bar></nav-bar>
 </template>
 
 <script>
@@ -33,6 +30,7 @@ export default {
 
 
 <style>
+<<<<<<< HEAD
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -57,4 +55,6 @@ nav a.router-link-exact-active {
 
 
 
+=======
+>>>>>>> bdaf2f681a638c4f37d7eaafe2910e7866ece652
 </style>
