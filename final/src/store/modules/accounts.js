@@ -66,7 +66,7 @@ export default {
         dispatch('saveToken', res.data.key)
         dispatch('fetchCurrentUser')
         
-        router.push({name:'actors'})
+        router.push({name:'home'})
         
       })
 
