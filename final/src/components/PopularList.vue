@@ -1,14 +1,17 @@
 <template>
 <div>
-  <b-button>개봉일</b-button>
-  <b-button>이름순</b-button>
-  <b-button>평점순</b-button>
+  <div>
+    <button @click="changeKeyword" value="popularity">인기</button>
+    <button @click="changeKeyword" value="title">이름</button>
+    <button @click="changeKeyword" value="released_date">개봉일</button>
+    <button @click="changeKeyword" value="vote_average">평점</button>
+  </div>
   <div class="row">
     <popular-list-item v-for="movie in movies"
-    :key="movie.pk"
+    :key="movie.id"
     :movie="movie"
     ></popular-list-item>
-    <button @click="fetchMovies"> 더 보기 </button>
+    <button @click="fetchSortedMovies(keyword)"> 더 보기 </button>
   </div>
 </div>
 </template>
@@ -22,6 +25,7 @@ export default {
   name:'PopularList',
   data () {
     return {
+      keyword : 'popularity',
       
       
     }
@@ -30,22 +34,37 @@ export default {
     PopularListItem,
   },
   computed: {
-    ...mapGetters(['movies']),
+    ...mapGetters(['movies', 'isreversed']),
   },
   methods:{       // 교수님 콜
-    ...mapActions(['fetchMovies']),
-    test() {
-        setTimeout(() => {
-           if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight ) { 
-          this.fetchMovies()   
+    ...mapActions(['fetchMovies', 'fetchSortedMovies', 'resetPage', 'reverse', 'resetMovies']),
+    changeKeyword (event) {
+      if (this.keyword === event.target.value) {  
+        this.resetMovies()
+        this.resetPage()
+        this.reverse()
+        this.fetchSortedMovies(this.keyword)
       }
-          console.log(2)  
-        }, 1000);
+      else {
+        this.keyword = event.target.value
+        this.resetMovies()
+        this.resetPage()
+        this.fetchSortedMovies(this.keyword)
+      }     
     }
+    // test() {
+    //     setTimeout(() => {
+    //        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight ) { 
+    //       this.fetchMovies()   
+    //   }
+    //       console.log(2)  
+    //     }, 1000);
+    // }
   },
 
   created() {
-    this.fetchMovies()
+    // this.fetchSortedMovies(this.keyword)
+    // this.fetchMovies()
   },
 
   // mounted() {

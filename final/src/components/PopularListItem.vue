@@ -1,6 +1,6 @@
 <template>
   <div class="card" style="width: 18rem;">
-    <router-link :to="{ name: 'moviedetail', params:{movieId:movie.pk}}">
+    <router-link :to="{ name: 'moviedetail', params: {movieId:movie.id} }">
      <img :src="url+movie.poster_path" alt="" @mouseenter="showDetail">
     </router-link>
     <router-view/>
