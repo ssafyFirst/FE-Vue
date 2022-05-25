@@ -1,8 +1,5 @@
 <template>
-  <div id="app">
-    <nav-bar></nav-bar>
-    
-  </div>
+  <nav-bar></nav-bar>
 </template>
 
 <script>
@@ -23,7 +20,8 @@ export default {
   },
   beforeDestroy () {
     this.removeToken()
-  }
+  },
+  
 
 }
 </script>
@@ -32,12 +30,14 @@ export default {
 
 
 <style>
+<<<<<<< HEAD
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height:100vh;
 }
 
 nav {
@@ -55,4 +55,6 @@ nav a.router-link-exact-active {
 
 
 
+=======
+>>>>>>> bdaf2f681a638c4f37d7eaafe2910e7866ece652
 </style>
