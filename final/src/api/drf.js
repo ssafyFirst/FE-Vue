@@ -30,7 +30,9 @@ export default {
     genres: () => HOST + MOVIE + GENRES,
     recommend : (username) => HOST + MOVIE + 'recommendation/' +`${username}/`,
     actormovie : (moviePk) => HOST + MOVIE + 'actor/' + `${moviePk}/`,
-    LikeGenres : (genrePk) => HOST + MOVIE + `${genrePk}/`
+    LikeGenres : (genrePk) => HOST + MOVIE + `${genrePk}/`,
+    sortmovies : (keyword, page) => HOST + MOVIE + 'sort/' + `${keyword}/` + `${page}/`,
+    sortmovies2 : (keyword, page) => HOST + MOVIE + 'sort/' + `${keyword}/` + `${page}/` + '2/'
   },
   actors : {
     actors : (page) => HOST + ACTOR + `${page}/`,

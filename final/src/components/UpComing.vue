@@ -9,6 +9,7 @@
       img-width="400"
       img-height="480"
     >
+
       <up-coming-item
       v-for="( movie, index) in upcomingMovie"
       :key="movie.id"

@@ -19,7 +19,7 @@
     
     
 
-    <router-link :to="{ name: 'recommend', params:  profile.username }">추천</router-link>
+    <router-link :to="{ name: 'recommend', params: profile.username }">추천</router-link>
 
     <router-view/>
   </div>

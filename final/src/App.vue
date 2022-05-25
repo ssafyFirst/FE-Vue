@@ -16,10 +16,13 @@ export default {
     NavBar,
   },
   methods: {
-    ...mapActions(['fetchCurrentUser'])
+    ...mapActions(['fetchCurrentUser', 'removeToken'])
   },
   created () {
     this.fetchCurrentUser()
+  },
+  beforeDestroy () {
+    this.removeToken()
   }
 
 }

@@ -12,6 +12,7 @@ export default {
     comments : [],
     recommendMovies : [],
     movieactor : [],
+    isreversed : false
     
   },
   getters:{
@@ -21,6 +22,7 @@ export default {
     comments : state => state.movie.comments,
     recommendMovies : state => state.recommendMovies,
     movieactor : state => state.movieactor,
+    isreversed : state => state.isreversed
     
   },
   mutations:{
@@ -34,13 +36,25 @@ export default {
 
     SET_MOVIE_COMMENTS : (state, comments) => state.movie.comments = comments,
 
-    SET_RECOMMEND : (state, recommendMovies) => state.recommedMovies = recommendMovies,
+    SET_RECOMMEND : (state, recommendMovies) => state.recommendMovies = recommendMovies,
 
     SET_MOVIE_ACTOR : (state, actors) => state.movieactor = actors,
+
+    RESET_PAGE : (state) => state.page = 0,
+
+    SET_ISREVERSED : (state) => state.isreversed = !state.isreversed,
+
+    RESET_MOVIES : (state) => state.movies = []
 
     
   },
   actions:{
+    resetMovies ({commit}) {
+      commit('RESET_MOVIES')
+    },
+
+
+
     fetchMovies ({ commit, getters }) {
       axios({
         url: drf.movies.movies(getters.page),
@@ -52,6 +66,42 @@ export default {
           commit('INCREASE_PAGE', getters.page)
         })
         .catch(err => console.error(err.response))
+    },
+
+
+    fetchSortedMovies ({  getters, commit }, keyword) {
+      if (getters.isreversed) {
+        axios({
+          url:drf.movies.sortmovies(keyword, getters.page),
+          method:'get',
+          headers:getters.authHeader
+        })
+        .then( res => {
+          commit('FETCH_MOVIES', res.data)
+          commit('INCREASE_PAGE', getters.page)
+        })
+        .catch(err => console.error(err.response))
+      }
+      else {
+        axios({
+          url:drf.movies.sortmovies2(keyword, getters.page),
+          method:'get',
+          headers:getters.authHeader
+        })
+        .then( res => {
+          commit('FETCH_MOVIES', res.data)
+          commit('INCREASE_PAGE', getters.page)
+        })
+        .catch(err => console.error(err.response))
+      }
+    },
+
+
+    resetPage({  commit }) {
+      commit('RESET_PAGE')    
+    },
+    reverse ({commit}) {
+      commit('SET_ISREVERSED')
     },
     fetchMovie ({ dispatch, commit, getters }, movieId) {
       axios({
