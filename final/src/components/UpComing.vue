@@ -1,21 +1,20 @@
 <template>
   <div>
     <b-carousel
-    id="carousel-fade"
-    style="text-shadow: 0px 0px 2px #000"
-    fade
-    indicators
-    interval=4000
-    img-width="1024"
-    img-height="480"
-  >
+      id="carousel"
+      v-model="slide"
+      :interval="4000"
+      controls
+      indicators
+      img-width="400"
+      img-height="480"
+    >
       <up-coming-item
       v-for="( movie, index) in upcomingMovie"
       :key="movie.id"
       :movie="movie"
       :index="index"
       ></up-coming-item>
-    
   </b-carousel>
   </div>
   
@@ -33,7 +32,9 @@ export default {
     },
   data () {
     return {
-      upcomingMovie:[]
+      upcomingMovie:[],
+      slide: 0,
+      sliding: null
     }
   },
   created () {
