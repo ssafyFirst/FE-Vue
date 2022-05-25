@@ -44,10 +44,13 @@
       </b-collapse>
     </b-navbar>
 
+
+
     <b-navbar v-else>
       <button @click="darkModeToggle">darkMode</button>
     </b-navbar>
   
+
   </div>
 </template>
 

@@ -17,7 +17,7 @@ export default {
   
   data() {
     return {
-      url:'https://image.tmdb.org/t/p/w300/'
+      url:'https://image.tmdb.org/t/p/w300/',
     }
   },
   props: {

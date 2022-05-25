@@ -1,21 +1,26 @@
 <template>
-  <div>
+  <div
+  :style="{ 'background-image': 'url(' + url + movie.backdrop_path + ')',
+  'background-size': 'cover', 'width': '100vw', 'height': '100vh'}"
+  >
+  <b-card class="overflow-hidden" style="max-width: 1000px; mx">
+  <b-row no-gutters class="d-flex text-align-center">
+    <b-col md="4">
+      <b-card-img :src="url + movie.poster_path" alt="Image" class="rounded-0"></b-card-img>
+    </b-col>
+    <b-col md="4">
     <h1>{{ movie.title }}</h1>
-    {{ movie.overview }}
-    <br>
-    <img :src="url + movie.poster_path" alt="">
-    
-    <br>
+    {{ movie.overview.substr(0, 150) + '...'}}
     {{ movie.released_data }}
-    <br>
     <movie-actor-item
     v-for="actor in movieactor"
     :key="actor.id"
     :actor="actor"
     ></movie-actor-item>
+    </b-col>
 
 
-
+    <b-col md="4">
     <div>
       Likeit:
       <button
@@ -24,11 +29,14 @@
     </div>
     
   
+    <comment-list :comments="this.movie.comments"></comment-list>
     <form @submit.prevent="addComment">
       <input type="text" v-model="content">
       <button>입력</button>
     </form>
-    <comment-list :comments="this.movie.comments"></comment-list>
+    </b-col>
+    </b-row>
+    </b-card>
   </div>
 </template>
 
@@ -84,5 +92,4 @@ export default {
 </script>
 
 <style>
-
 </style>
