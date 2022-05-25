@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-nav class="justify-content-between bg-info sticky-top">
+    <b-navbar toggleable="lg" type="dark" variant="info">
       <div>Movie</div>
       <div>
         <router-link to="/">Home</router-link>
@@ -25,9 +25,8 @@
       >
       <map-item></map-item>
       </b-sidebar>
-    </b-nav>
+    </b-navbar>
     <router-view/>
-    
   </div>
 </template>
 
