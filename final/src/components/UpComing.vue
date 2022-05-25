@@ -6,6 +6,7 @@
     fade
     indicators
     interval=4000
+    w-70
     img-width="1024"
     img-height="480"
   >

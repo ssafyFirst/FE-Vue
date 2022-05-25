@@ -1,8 +1,11 @@
 <template>
   <div>
-    <b-carousel-slide
-      :img-src="url + movie.poster_path"
-    ></b-carousel-slide>
+    <div class="w-80">
+      <b-carousel-slide
+      w-70
+        :img-src="url + movie.poster_path"
+      ></b-carousel-slide>
+    </div>
     <!-- <img :src="url + movie.poster_path" alt="" class=""> -->
   
   </div>

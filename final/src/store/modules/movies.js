@@ -36,7 +36,7 @@ export default {
 
     SET_MOVIE_COMMENTS : (state, comments) => state.movie.comments = comments,
 
-    SET_RECOMMEND : (state, recommendMovies) => state.recommedMovies = recommendMovies,
+    SET_RECOMMEND : (state, recommendMovies) => state.recommendMovies = recommendMovies,
 
     SET_MOVIE_ACTOR : (state, actors) => state.movieactor = actors,
 
