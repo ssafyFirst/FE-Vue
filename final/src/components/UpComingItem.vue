@@ -1,7 +1,9 @@
 <template>
   <b-carousel-slide
     :img-src="url + movie.poster_path"
-  ></b-carousel-slide>
+    style="max-width: 20%;"
+  >
+  </b-carousel-slide>
 </template>
 
 <script>
