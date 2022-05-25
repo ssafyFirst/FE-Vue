@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar class="justify-content-center sticky-top" toggleable="lg" type="dark" variant="info">
+    <b-navbar v-if="isLoggedIn" class="justify-content-center sticky-top" toggleable="lg" type="dark" variant="info">
       <b-navbar-brand href="#">
         <router-link to="/">
           <img class="w-50 h-50" src="@/assets/logo22.png" alt="">
@@ -14,8 +14,10 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <button @click="darkModeToggle">darkMode</button>
+          <button class="mx-3" @click="darkModeToggle">darkMode</button>
           <b-icon icon="sliders" font-scale="3" v-b-toggle.sidebar-backdrop></b-icon>
+
+
 
         <b-sidebar
           id="sidebar-backdrop"
@@ -41,7 +43,11 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-  <router-view/>
+
+    <b-navbar v-else>
+      <button @click="darkModeToggle">darkMode</button>
+    </b-navbar>
+  
   </div>
 </template>
 

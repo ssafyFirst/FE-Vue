@@ -1,19 +1,23 @@
 <template>
 <div>
   <div>
-    <button @click="changeKeyword" value="popularity">인기</button>
-    <button @click="changeKeyword" value="title">이름</button>
-    <button @click="changeKeyword" value="released_date">개봉일</button>
-    <button @click="changeKeyword" value="vote_average">평점</button>
+    <b-button class="m-1" @click="changeKeyword" value="popularity">인기</b-button>
+    <b-button class="m-1" @click="changeKeyword" value="title">이름</b-button>
+    <b-button class="m-1" @click="changeKeyword" value="released_date">개봉일</b-button>
+    <b-button class="m-1" @click="changeKeyword" value="vote_average">평점</b-button>
   </div>
-  <b-card-group columns>
-    <popular-list-item v-for="movie in movies"
-    :key="movie.id"
-    :movie="movie"
-    style="float: left;"
-    ></popular-list-item>
-  </b-card-group>
-  <button @click="fetchSortedMovies(keyword)"> 더 보기 </button>
+  <div>
+    <b-card-group columns>
+      <popular-list-item v-for="movie in movies"
+      :key="movie.id"
+      :movie="movie"
+      style="float: left;"
+      ></popular-list-item>
+    </b-card-group>
+  </div>
+  <div class="morebutton mt-3">
+    <b-button  @click="fetchSortedMovies(keyword)" > 더 보기 </b-button>
+  </div>
 </div>
 </template>
 
@@ -82,5 +86,9 @@ export default {
 </script>
 
 <style>
-
+.morebutton {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
 </style>
