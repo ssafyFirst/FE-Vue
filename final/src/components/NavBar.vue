@@ -33,10 +33,9 @@
         <div v-if="isLoggedIn">
           <br>
           <router-link :to="{ name: 'profile', params: { username: currentUser.username } }">
-          <b-list-group-item class="d-flex align-items-center justify-content-between">
-            <b-avatar variant="info" :src="url + currentUser.profile_img" class="mr-4"></b-avatar>
+          <b-list-group-item class="d-flex align-items-center">
+            <b-avatar class="me-4" variant="info" :src="url + currentUser.profile_img"></b-avatar>
             <span class="mr-auto">{{ currentUser.username }}</span>
-            <span class="badge bg-light text-dark">{{ currentUser.like_movies.length }}</span>
           </b-list-group-item>
           </router-link>
           <log-out></log-out>
