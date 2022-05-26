@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div>
+  <div class="sortbutton my-3">
     <b-button class="m-1" @click="changeKeyword" value="popularity">인기</b-button>
     <b-button class="m-1" @click="changeKeyword" value="title">이름</b-button>
     <b-button class="m-1" @click="changeKeyword" value="released_date">개봉일</b-button>
@@ -23,6 +23,7 @@
 
 
 <script>
+// import { SplitCarousel, SplitCarouselItem } from "vue-split-carousel";
 import PopularListItem from '@/components/PopularListItem'
 import { mapActions, mapGetters } from 'vuex'
 
@@ -37,6 +38,7 @@ export default {
   },
   components:{
     PopularListItem,
+    
   },
   computed: {
     ...mapGetters(['movies', 'isreversed']),

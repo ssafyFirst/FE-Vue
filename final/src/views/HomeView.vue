@@ -1,7 +1,11 @@
 <template>
-  <div>
-    <up-coming></up-coming>
-    <popular-list></popular-list>
+  <div id="home">
+    <div class="my-3">
+      <up-coming></up-coming>
+    </div>
+    <div class="my-3">
+      <popular-list></popular-list>
+    </div>
   </div>
 </template>
 
@@ -20,5 +24,8 @@ export default {
 </script>
  
 <style>
-
+#home {
+  width: 80%;
+  margin: auto;
+}
 </style>

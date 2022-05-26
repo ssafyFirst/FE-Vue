@@ -17,6 +17,7 @@
     "vue-geolocation-api": "^0.1.21",
     "vue-infinite-loading": "^2.4.5",
     "vue-router": "^3.5.1",
+    "vue-split-carousel": "^1.1.1",
     "vuex": "^3.6.2"
   },
   "devDependencies": {
