@@ -1,21 +1,17 @@
 <template>
   <div>
-    <b-navbar v-if="isLoggedIn" class="justify-content-center sticky-top" toggleable="lg" type="dark" variant="info">
+    <b-navbar v-if="isLoggedIn" toggleable="lg" type="dark" variant="light">
       <b-navbar-brand href="#">
         <router-link to="/">
           <img class="w-50 h-50" src="@/assets/logo22.png" alt="">
         </router-link>
       </b-navbar-brand>
       <b-collapse id="nav-collapse" is-nav class="justify-content-end">
-        <b-navbar-nav>
-          <b-nav-item href="#">Link</b-nav-item>
-          <b-nav-item href="#" disabled>Disabled</b-nav-item>
-        </b-navbar-nav>
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <button class="mx-3" @click="darkModeToggle">darkMode</button>
-          <b-icon icon="sliders" font-scale="3" v-b-toggle.sidebar-backdrop></b-icon>
+          <b-button class="mx-3" @click="darkModeToggle">DarkMode</b-button>
+          <b-icon icon="sliders" font-scale="2" v-b-toggle.sidebar-backdrop></b-icon>
 
 
 

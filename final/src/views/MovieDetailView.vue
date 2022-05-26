@@ -3,36 +3,41 @@
   :style="{ 'background-image': 'url(' + url + movie.backdrop_path + ')',
   'background-size': 'cover', 'width': '100vw', 'height': '100vh'}"
   >
-  <b-card class="overflow-hidden" style="max-width: 1000px; mx">
-  <b-row no-gutters class="d-flex text-align-center">
+  <b-card class="overflow-hidden" style="max-width: 1000px; margin: 0 auto; display: inline-block; margin-top: 200px;">
+  <b-row no-gutters>
     <b-col md="4">
       <b-card-img :src="url + movie.poster_path" alt="Image" class="rounded-0"></b-card-img>
     </b-col>
-    <b-col md="4">
+    <b-col md="4" style="position: relative">
     <h1>{{ movie.title }}</h1>
-    {{ movie.overview.substr(0, 150) + '...'}}
-    {{ movie.released_data }}
+    {{ movie.overview.substr(0, 125) + '...'}}
+    <br>
+    <br>
+    <span class="badge rounded-pill bg-dark">개봉일 : {{ movie.released_date }}</span>
+    <br>
+    <span class="badge rounded-pill bg-success">평점 : {{ movie.vote_average }}</span>
+    <hr>
+    <h4><span class="badge bg-secondary">출연진</span></h4>
     <movie-actor-item
     v-for="actor in movieactor"
     :key="actor.id"
     :actor="actor"
     ></movie-actor-item>
+    <div style="position: absolute; bottom: 0;">
+    <b-button @click="likeMovie(movieId)" variant="primary">
+      좋아요
+      <span class="badge"
+      >{{ likeCount }}</span>
+    </b-button>
+    </div>
     </b-col>
 
 
-    <b-col md="4">
-    <div>
-      Likeit:
-      <button
-        @click="likeMovie(movieId)"
-      >{{ likeCount }}</button>
-    </div>
-    
-  
+    <b-col md="4" style="position: relative">
     <comment-list :comments="this.movie.comments"></comment-list>
-    <form @submit.prevent="addComment">
-      <input type="text" v-model="content">
-      <button>입력</button>
+    <form @submit.prevent="addComment" style="position: absolute; bottom: 0;" class="ms-4">
+      <input type="text" v-model="content" placeholder="댓글 달기...">
+      <b-button variant="outline-primary" class="mx-3">게시</b-button>
     </form>
     </b-col>
     </b-row>

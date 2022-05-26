@@ -1,6 +1,9 @@
 <template>
-  <li class="comment-list-item">
-    <router-link :to="{ name: 'profile', params: { username: comment.user.username } }">
+  <li class="comment-list-item" style="float: left;">
+    <router-link :to="{ name: 'profile', params: { username: comment.user.username } }"
+    style="text-decoration: none; color: inherit;"
+    >
+      <b-avatar variant="info" :src="url + comment.user.profile_img"></b-avatar>
       {{ comment.user.username }}
     </router-link>: 
     
@@ -8,13 +11,13 @@
 
     <span v-if="isEditing">
       <input type="text" v-model="payload.content">
-      <button @click="onUpdate">Update</button> |
-      <button @click="switchIsEditing">Cancel</button>
+      <b-icon icon="x-lg" @click="switchIsEditing"></b-icon> | 
+      <b-icon icon="pen" @click="onUpdate"></b-icon>
     </span>
 
     <span v-if="currentUser.username === comment.user.username && !isEditing">
-      <button @click="switchIsEditing">Edit</button> |
-      <button @click="deleteComment(payload)">Delete</button>
+      <b-icon icon="pen" class="ms-3" @click="switchIsEditing"></b-icon> |
+      <b-icon icon="trash-fill" @click="deleteComment(payload)"></b-icon>
     </span>
   </li>
 </template>
@@ -28,6 +31,7 @@ export default {
   },
   data() {
     return {
+      url : "http://127.0.0.1:8000",
       isEditing: false,
       payload: {
         moviePk: this.comment.movie,
