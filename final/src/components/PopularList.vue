@@ -15,9 +15,11 @@
       ></popular-list-item>
     </b-card-group>
   </div>
-  <div class="morebutton">
-    <b-button  @click="fetchSortedMovies(keyword)" variant="success"> 더 보기 </b-button>
+  <div class="morebutton ml-auto">
+      <b-button  @click="fetchSortedMovies(keyword)" variant="success"> 더 보기 </b-button>
   </div>
+
+  <b-button class="gototop" style="cursor:pointer;" onclick="window.scrollTo(0,0);" pill>TOP</b-button>
 </div>
 </template>
 
@@ -90,7 +92,13 @@ export default {
 <style>
 .morebutton {
   position: fixed;
-  bottom: 0;
-  width: 100%;
+  bottom: 30px;
+  left : 30px;
+  
+}
+.gototop {
+  position:fixed;
+  right: 30px;
+  bottom: 30px;
 }
 </style>

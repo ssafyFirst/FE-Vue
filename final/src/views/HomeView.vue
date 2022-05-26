@@ -6,6 +6,7 @@
     <div class="my-3 ">
       <popular-list></popular-list>
     </div>
+    
   </div>
 </template>
 
@@ -28,4 +29,5 @@ export default {
   width: 80%;
   margin: auto;
 }
+
 </style>

@@ -16,11 +16,11 @@
         <b-navbar-nav class="ml-auto">
           <form class="searchForm d-flex form-inline my-2 my-lg-0" @submit.prevent="searchKeyword">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="keyword" >
-            <div>
+            <div class="mx-3">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
             </div>
           </form>
-          <button class="mx-3" @click="darkModeToggle">darkMode</button>
+          <!-- <button class="mx-3" @click="darkModeToggle">darkMode</button> -->
           <b-avatar :src="url + currentUser.profile_img" v-b-toggle.sidebar-backdrop size="5rem"></b-avatar>
 
         <b-sidebar

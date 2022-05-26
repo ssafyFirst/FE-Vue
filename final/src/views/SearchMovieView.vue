@@ -1,12 +1,12 @@
 <template>
   <div id="search">
     <h1>검색된 영화들</h1>
-    <div class="sortbutton my-3">
+    <!-- <div class="sortbutton my-3">
       <b-button class="m-1" @click="changeKeyword" value="popularity">인기</b-button>
       <b-button class="m-1" @click="changeKeyword" value="title">이름</b-button>
       <b-button class="m-1" @click="changeKeyword" value="released_date">개봉일</b-button>
       <b-button class="m-1" @click="changeKeyword" value="vote_average">평점</b-button>
-    </div>
+    </div> -->
     <div class="">
       <b-card-group columns>
         <searched-movie-list v-for="movie in searchedMovies"
@@ -33,7 +33,7 @@ export default {
   data () {
     return {
       searchedMovies : [],
-      keyword : 'title'
+      sort : 'title'
     }
   },
   computed: {
@@ -41,13 +41,27 @@ export default {
   },
   methods: {
     ...mapActions(['searchKeyword', 'fetchProfile']),
-    changeKeword (event) {
+    changeKeyword (event) {
       if (this.keyword === event.target.value){
         this.searchedMovies = []
+        axios({
+          url:drf.movies.searchsort(this.$route.params.keyword, this.sort),
+          method :'get',
+          headers:this.$store.getters.authHeader
+        })
+        .then( res=> this.searchedMovies = res.data)
+
+
       }
       else {
         this.keyword = event.target.value
         this.searchedMovies = []
+        axios({
+          url:drf.movies.searchsort(this.$route.params.keyword, this.sort),
+          method :'get',
+          headers:this.$store.getters.authHeader
+        })
+        .then( res=> this.searchedMovies = res.data)
       }
     }
   },
