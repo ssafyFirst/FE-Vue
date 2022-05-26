@@ -89,6 +89,7 @@ import axios from 'axios'
 import drf from '@/api/drf'
 // import GenreListItem from '@/components/GenreListItem.vue'
 import AccountErrorList from '@/components/AccountErrorList.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name:'SignupView',
@@ -111,6 +112,7 @@ export default {
     }
   },
   computed:{
+    ...mapGetters(['authError']),
     state() {
       return this.mygenres.length === 3
     }

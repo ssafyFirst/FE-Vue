@@ -14,9 +14,11 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <form class="form-inline my-2 my-lg-0" @submit.prevent="searchKeyword">
+          <form class="searchForm d-flex form-inline my-2 my-lg-0" @submit.prevent="searchKeyword">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="keyword" >
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
+            <div>
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
+            </div>
           </form>
           <button class="mx-3" @click="darkModeToggle">darkMode</button>
           <b-avatar :src="url + currentUser.profile_img" v-b-toggle.sidebar-backdrop size="5rem"></b-avatar>
@@ -51,9 +53,7 @@
       </b-collapse>
     </b-navbar>
 
-    <b-navbar v-else>
-      <button @click="darkModeToggle">darkMode</button>
-    </b-navbar>
+
   </div>
 </template>
 
@@ -171,6 +171,14 @@ export default {
 
 .hello .hello__content {
     color: var(--content-color);
+}
+.searchForm input{
+  height: 50%;
+  margin: auto;
+}
+.searchForm div{
+  height: 50%;
+  margin: auto;
 }
 
 </style>
