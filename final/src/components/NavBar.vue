@@ -14,7 +14,7 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <form class="form-inline my-2 my-lg-0" @submit.prevent="serchKeyword">
+          <form class="form-inline my-2 my-lg-0" @submit.prevent="searchKeyword">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="keyword" >
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
           </form>
@@ -60,7 +60,7 @@
 <script>
 import LogOut from '@/components/LogOut.vue'
 import MapItem from '@/components/MapItem'
-import { mapGetters} from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import router from "@/router"
 
 export default {
@@ -91,8 +91,16 @@ export default {
     }
   },
   methods:{
-    serchKeyword () {
-      router.push({name:'search', params:{keyword:this.keyword}})
+    ...mapActions(['fetchProfile']),
+    searchKeyword () {
+      router.push({name:'search', params:{keyword:this.keyword.trim()}})
+      location.reload()
+    },
+    created() {
+      this.fetchProfile(this.username)
+    },
+    mounted() {
+      this.fetchProfile(this.username)
     },
     darkModeToggle () {
       if (window) {
