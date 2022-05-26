@@ -7,9 +7,10 @@ import SignupView from '@/views/SignupView.vue'
 import SignupMoreView from '@/views/SignupMoreView.vue'
 import ProfileView from '@/views/ProfileView.vue'
 import MovieDetailView from '@/views/MovieDetailView.vue'
-import RecommendMovieView from '@/views/RecommendMovieView'
+import RecommendMovieView from '@/views/RecommendMovieView.vue'
 import ActorListView from '@/views/ActorListView'
 import ActorDetailView from '@/views/ActorDetailView'
+import SearchMovieView from '@/views/SearchMovieView.vue'
 
 Vue.use(VueRouter)
 
@@ -58,6 +59,11 @@ const routes = [
     path: '/actor/:actorId',
     name: 'actordetail',
     component: ActorDetailView
+  },
+  {
+    path: '/search/:keyword',
+    name: 'search',
+    component: SearchMovieView
   },
   
 ]

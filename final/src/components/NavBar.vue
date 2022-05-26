@@ -6,7 +6,7 @@
           <img class="w-50 h-50" src="@/assets/logo22.png" alt="">
         </router-link>
       </b-navbar-brand>
-      <b-collapse id="nav-collapse" is-nav class="justify-content-end">
+      <b-collapse id="nav-collapse" is-nav class="justify-content-end inline">
         <b-navbar-nav>
           <b-nav-item href="#">Link</b-nav-item>
           <b-nav-item href="#" disabled>Disabled</b-nav-item>
@@ -14,6 +14,10 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
+          <form class="form-inline my-2 my-lg-0" @submit.prevent="serchKeyword">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="keyword" >
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
+          </form>
           <button class="mx-3" @click="darkModeToggle">darkMode</button>
           <b-icon icon="sliders" font-scale="3" v-b-toggle.sidebar-backdrop></b-icon>
 
@@ -34,30 +38,24 @@
         <div v-else>
           <router-link  to="/login">login</router-link>
         </div>
-        <b-nav-form class="">
-          <b-form-input size="sm" class="mr-sm-2 " placeholder="Search"></b-form-input>
-          <b-button size="sm" class="my-2 my-sm-0  " type="submit">Search</b-button>
-        </b-nav-form>
+
         <map-item></map-item>         
         </b-sidebar>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
 
-
-
     <b-navbar v-else>
       <button @click="darkModeToggle">darkMode</button>
     </b-navbar>
-  
-
   </div>
 </template>
 
 <script>
 import LogOut from '@/components/LogOut.vue'
 import MapItem from '@/components/MapItem'
-import { mapGetters } from 'vuex'
+import { mapGetters} from 'vuex'
+import router from "@/router"
 
 export default {
   name:'NavBar',
@@ -69,18 +67,16 @@ export default {
   data() {
     return {
       variant: 'dark',
+      keyword: ''
     }
   },
   computed :{
-    ...mapGetters(['isLoggedIn', 'currentUser']),
+    ...mapGetters(['isLoggedIn', 'currentUser' ,'profile']),
     username() {
         return this.currentUser.username ? this.currentUser.username : 'guest'
       },
   },
   mounted() {
-    
-
-
     if(window && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.documentElement.classList.add("darkmode");
     } else {
@@ -88,6 +84,9 @@ export default {
     }
   },
   methods:{
+    serchKeyword () {
+      router.push({name:'search', params:{keyword:this.keyword}})
+    },
     darkModeToggle () {
       if (window) {
         console.log(window)

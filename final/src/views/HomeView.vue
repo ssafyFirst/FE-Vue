@@ -3,7 +3,7 @@
     <div class="my-3">
       <up-coming></up-coming>
     </div>
-    <div class="my-3">
+    <div class="my-3 ">
       <popular-list></popular-list>
     </div>
   </div>

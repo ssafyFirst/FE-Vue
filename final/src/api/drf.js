@@ -1,3 +1,5 @@
+
+
 const HOST = 'http://127.0.0.1:8000/api/v1/'
 
 const ACCOUNTS = 'accounts/'
@@ -32,7 +34,8 @@ export default {
     actormovie : (moviePk) => HOST + MOVIE + 'actor/' + `${moviePk}/`,
     LikeGenres : (genrePk) => HOST + MOVIE + `${genrePk}/`,
     sortmovies : (keyword, page) => HOST + MOVIE + 'sort/' + `${keyword}/` + `${page}/`,
-    sortmovies2 : (keyword, page) => HOST + MOVIE + 'sort/' + `${keyword}/` + `${page}/` + '2/'
+    sortmovies2 : (keyword, page) => HOST + MOVIE + 'sort/' + `${keyword}/` + `${page}/` + '2/',
+    search : (keyword) => HOST + MOVIE + 'search/' + `${keyword}/`
   },
   actors : {
     actors : (page) => HOST + ACTOR + `${page}/`,
