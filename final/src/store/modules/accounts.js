@@ -120,9 +120,14 @@ export default {
           headers: getters.authHeader
         })
         .then(res => {
-          
-          commit('SET_CURRENT_USER', res.data)
-          
+          axios({
+            url: drf.accounts.profile(res.data.username),
+            method: 'get',
+            headers: getters.authHeader
+          })
+          .then( res => {
+            commit('SET_CURRENT_USER', res.data)
+          }) 
         })
         .catch( err => {
           if (err.response.status === 401) {

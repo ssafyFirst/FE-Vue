@@ -19,7 +19,7 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
           </form>
           <button class="mx-3" @click="darkModeToggle">darkMode</button>
-          <b-avatar :src="url + profile.profile_img" v-b-toggle.sidebar-backdrop size="5rem"></b-avatar>
+          <b-avatar :src="url + currentUser.profile_img" v-b-toggle.sidebar-backdrop size="5rem"></b-avatar>
 
         <b-sidebar
           id="sidebar-backdrop"
@@ -30,12 +30,12 @@
         >
         <div v-if="isLoggedIn">
           <br>
-          <router-link :to="{ name: 'profile', params: { username } }">
-          <!-- <b-list-group-item class="d-flex align-items-center justify-content-between">
-            <b-avatar variant="info" :src="url + profile.profile_img" class="mr-4"></b-avatar>
-            <span class="mr-auto">{{ profile.username }}</span>
-            <span class="badge bg-light text-dark">{{ profile.like_movies.length }}</span>
-          </b-list-group-item> -->
+          <router-link :to="{ name: 'profile', params: { username: currentUser.username } }">
+          <b-list-group-item class="d-flex align-items-center justify-content-between">
+            <b-avatar variant="info" :src="url + currentUser.profile_img" class="mr-4"></b-avatar>
+            <span class="mr-auto">{{ currentUser.username }}</span>
+            <span class="badge bg-light text-dark">{{ currentUser.like_movies.length }}</span>
+          </b-list-group-item>
           </router-link>
           <log-out></log-out>
         </div>
