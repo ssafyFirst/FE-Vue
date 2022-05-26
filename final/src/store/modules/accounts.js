@@ -10,6 +10,7 @@ export default {
     currentUser: {},
     profile : {},
     authError: null,
+    searchMovies : []
   },
   getters:{
     isLoggedIn : state => !!state.token,
@@ -19,6 +20,7 @@ export default {
     profile: state => state.profile,
     currentUser : state => state.currentUser,
     authError: state => state.authError,
+    searchMovies: state => state.searchMovies
 
     
   },
@@ -28,7 +30,8 @@ export default {
     },
     SET_CURRENT_USER : (state, user) => state.currentUser = user,
     SET_PROFILE : (state, profile) => state.profile = profile,
-    SET_AUTH_ERROR: (state, error) => state.authError = error
+    SET_AUTH_ERROR: (state, error) => state.authError = error,
+    FETCH_SEARCHMOVIES: (state, movies) => state.searchMovies = movies
     
   },
   actions:{
@@ -163,6 +166,18 @@ export default {
         console.log(res.data)
       })
     },
+    searchKeyword ({ getters,commit } ,keyword) {
+      
+      axios({
+        url:drf.movies.search(keyword),
+        method:"get",
+        headers:getters.authHeader
+      })
+      .then( res => {
+        commit('FETCH_SEARCHMOVIES', res.data)
+        router.push({name:'search', params:{keyword:keyword}})
+      })
+    }
     
   }
 }

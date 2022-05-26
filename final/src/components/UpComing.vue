@@ -1,38 +1,65 @@
 <template>
-  <b-carousel
-    id="carousel"
-    v-model="slide"
-    :interval="4000"
-    controls
-    indicators
-    img-width="400"
-    img-height="480"
-  >
+<div>
+  <div>
+    <h2>곧 개봉작</h2>
+    <div id="recommend" class="h-50">
+      <split-carousel
+      
+      height="230"
+      display-amount=7>
+        <split-carousel-item v-for="movie in upcomingMovie"
+            :key="movie.id"
+            >
+          <div class="card">
+            <img  :src="imgurl+movie.poster_path" width="120" height="230">
+          </div>
+        </split-carousel-item>
+      </split-carousel>
+    </div>
+  </div>
+  <div>
+    <h2>상영작</h2>
+        <div id="recommend" class="h-50">
+      <split-carousel
+      play-direction="rtl"
+      height="230"
+      display-amount=7>
+        <split-carousel-item v-for="movie in nowplayingMovies"
+            :key="movie.id"
+            >
+          <div class="card">
+            <img  :src="imgurl+movie.poster_path" width="120" height="230">
+          </div>
+        </split-carousel-item>
+      </split-carousel>
+    </div>
+  </div>
 
-    <up-coming-item
-    v-for="( movie, index) in upcomingMovie"
-    :key="movie.id"
-    :movie="movie"
-    :index="index"
-    ></up-coming-item>
-  </b-carousel>
+
+
+
+
+</div>
 </template>
 
 <script>
-import UpComingItem from '@/components/UpComingItem.vue'
-
+// import UpComingItem from '@/components/UpComingItem.vue'
+import { SplitCarousel, SplitCarouselItem } from "vue-split-carousel";
 import axios from 'axios'
 
 export default {
   name:'UpComing',
     components:{
-      UpComingItem,
+      // UpComingItem,
+      SplitCarousel,
+      SplitCarouselItem
     },
   data () {
     return {
       upcomingMovie:[],
-      slide: 0,
-      sliding: null
+
+      imgurl:'https://image.tmdb.org/t/p/w300',
+      nowplayingMovies:[]
     }
   },
   created () {
@@ -44,12 +71,23 @@ export default {
       },
       method: 'get'
     })
+      .then(res => {this.upcomingMovie.push(...res.data.results)  })
+      .catch(err => console.error(err)),
+    axios({
+      url:'https://api.themoviedb.org/3/movie/now_playing/',
+      params:{
+        api_key:'7f292cc09a9aff763e3e54a81c1ec05a',
+        language:'ko'
+      },
+      method: 'get'
+    })
       .then(
-        res => {this.upcomingMovie.push(...res.data.results)
+        res => {this.nowplayingMovies.push(...res.data.results)
         
         }
       )
       .catch(err => console.error(err))
+    
   }
 }
 </script>
