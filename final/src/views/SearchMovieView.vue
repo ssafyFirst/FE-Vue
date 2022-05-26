@@ -32,14 +32,24 @@ export default {
   components:{ SearchedMovieList },
   data () {
     return {
-      searchedMovies : []
+      searchedMovies : [],
+      keyword : 'title'
     }
   },
   computed: {
     ...mapGetters('searchMovies', 'currentUser')
   },
   methods: {
-    ...mapActions(['searchKeyword', 'fetchProfile'])
+    ...mapActions(['searchKeyword', 'fetchProfile']),
+    changeKeword (event) {
+      if (this.keyword === event.target.value){
+        this.searchedMovies = []
+      }
+      else {
+        this.keyword = event.target.value
+        this.searchedMovies = []
+      }
+    }
   },
   created () {
     if (this.$route.params.keyword) {
