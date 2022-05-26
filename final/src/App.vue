@@ -62,6 +62,9 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 * { font-family: 나눔스퀘어, 'NanumSquare', sans-serif; }
+input[type=password]{
+    font-family:"굴림";
+}
 
 .purple {
   background-color: rgb(220, 218, 242);

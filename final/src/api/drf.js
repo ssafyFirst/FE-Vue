@@ -35,7 +35,9 @@ export default {
     LikeGenres : (genrePk) => HOST + MOVIE + `${genrePk}/`,
     sortmovies : (keyword, page) => HOST + MOVIE + 'sort/' + `${keyword}/` + `${page}/`,
     sortmovies2 : (keyword, page) => HOST + MOVIE + 'sort/' + `${keyword}/` + `${page}/` + '2/',
-    search : (keyword) => HOST + MOVIE + 'search/' + `${keyword}/`
+    search : (keyword) => HOST + MOVIE + 'search/' + `${keyword}/`,
+    nosearch : () => HOST + MOVIE + 'search/'
+
   },
   actors : {
     actors : (page) => HOST + ACTOR + `${page}/`,

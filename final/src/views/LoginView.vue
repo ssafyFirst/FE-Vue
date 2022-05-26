@@ -14,6 +14,7 @@
       <div style="background-color: #26282b" class="rounded p-5 w-50">
         <div class="text-start">
           <h1 class="mb-4">로그인</h1>
+          <account-error-list v-if="authError"></account-error-list>
         </div>
         <div class="mb-3 text-start">
           <label for="username" class="form-label">아이디</label>
@@ -52,11 +53,15 @@
 
 <script>
 import * as _ from 'lodash'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import axios from 'axios'
+import AccountErrorList from '@/components/AccountErrorList.vue'
 
 export default {
   name: 'LoginView',
+  components: {
+    AccountErrorList,
+  },
   data () {
     return {
       credentials : {
@@ -69,6 +74,9 @@ export default {
   },
   methods: {
     ...mapActions(['login'])
+  },
+  computed: {
+    ...mapGetters(['authError'])
   },
   created () {
     axios({

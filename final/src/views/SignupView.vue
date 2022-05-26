@@ -1,7 +1,9 @@
 <template>
   <b-container style="height: 100vh">
     <div class="w-50 mx-auto h-100 ">
+      <h1>signup</h1>
       <div class="p-5">
+        <account-error-list v-if="authError"></account-error-list>
         <b-form @submit.prevent="signup(formData)" @reset="onReset" >
           <b-form-group
             id="input-group-1"
@@ -86,11 +88,12 @@
 import axios from 'axios'
 import drf from '@/api/drf'
 // import GenreListItem from '@/components/GenreListItem.vue'
+import AccountErrorList from '@/components/AccountErrorList.vue'
 
 export default {
   name:'SignupView',
   components:{
-    
+      AccountErrorList,
   },
   data() {
     const formData = new FormData()
