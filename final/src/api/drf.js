@@ -36,6 +36,7 @@ export default {
     sortmovies : (keyword, page) => HOST + MOVIE + 'sort/' + `${keyword}/` + `${page}/`,
     sortmovies2 : (keyword, page) => HOST + MOVIE + 'sort/' + `${keyword}/` + `${page}/` + '2/',
     search : (keyword) => HOST + MOVIE + 'search/' + `${keyword}/`,
+    searchsort : (keyword, sort) => HOST + MOVIE + 'search/' + `${keyword}/` + `${sort}/`,
     nosearch : () => HOST + MOVIE + 'search/'
 
   },
