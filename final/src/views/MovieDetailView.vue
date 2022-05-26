@@ -3,7 +3,7 @@
   :style="{ 'background-image': 'url(' + url + movie.backdrop_path + ')',
   'background-size': 'cover', 'width': '100vw', 'height': '100vh'}"
   >
-  <b-card class="overflow-hidden" style="max-width: 1000px; margin: 0 auto; display: inline-block; margin-top: 200px;">
+  <b-card  style="max-width: 1000px; margin: 0 auto; display: inline-block; margin-top: 200px; overflow: auto;">
   <b-row no-gutters>
     <b-col md="4">
       <b-card-img :src="url + movie.poster_path" alt="Image" class="rounded-0"></b-card-img>
@@ -32,9 +32,9 @@
     </div>
     </b-col>
 
-
-    <b-col md="4" style="position: relative">
+    <b-col md="4" style="position: relative;">
     <comment-list :comments="this.movie.comments"></comment-list>
+    
     <form @submit.prevent="addComment" style="position: absolute; bottom: 0;" class="ms-4">
       <input type="text" v-model="content" placeholder="댓글 달기...">
       <b-button variant="outline-primary" class="mx-3">게시</b-button>

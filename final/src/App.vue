@@ -1,7 +1,6 @@
 <template>
-<div id="app">
+<div id="app" class="purple">
   <nav-bar></nav-bar>
-  
   <router-view/>
 </div>
 </template>
@@ -64,6 +63,10 @@ nav a.router-link-exact-active {
 }
 * { font-family: 나눔스퀘어, 'NanumSquare', sans-serif; }
 
-
-
+.purple {
+  background-color: rgb(220, 218, 242);
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
 </style>

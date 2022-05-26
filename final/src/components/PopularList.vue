@@ -1,12 +1,12 @@
 <template>
-<div class="mb-5">
-  <div class="sortbutton my-3">
-    <b-button class="m-1" @click="changeKeyword" value="popularity">인기</b-button>
-    <b-button class="m-1" @click="changeKeyword" value="title">이름</b-button>
-    <b-button class="m-1" @click="changeKeyword" value="released_date">개봉일</b-button>
-    <b-button class="m-1" @click="changeKeyword" value="vote_average">평점</b-button>
-  </div>
-  <div class="mb-5">
+<div class="mt-5">
+  <b-button-group size="lg">
+    <b-button class="m-1" @click="changeKeyword" variant="dark" value="popularity">인기순</b-button>
+    <b-button class="m-1" @click="changeKeyword" variant="dark" value="title">이름순</b-button>
+    <b-button class="m-1" @click="changeKeyword" variant="dark" value="released_date">개봉일순</b-button>
+    <b-button class="m-1" @click="changeKeyword" variant="dark" value="vote_average">평점순</b-button>
+  </b-button-group>
+  <div class="mt-5">
     <b-card-group columns>
       <popular-list-item v-for="movie in movies"
       :key="movie.id"
@@ -15,8 +15,8 @@
       ></popular-list-item>
     </b-card-group>
   </div>
-  <div class="morebutton mt-3">
-    <b-button  @click="fetchSortedMovies(keyword)" > 더 보기 </b-button>
+  <div class="morebutton">
+    <b-button  @click="fetchSortedMovies(keyword)" variant="success"> 더 보기 </b-button>
   </div>
 </div>
 </template>

@@ -12,7 +12,7 @@
     <span v-if="isEditing">
       <input type="text" v-model="payload.content">
       <b-icon icon="x-lg" @click="switchIsEditing"></b-icon> | 
-      <b-icon icon="pen" @click="onUpdate"></b-icon>
+      <b-icon icon="check-lg" @click="onUpdate"></b-icon>
     </span>
 
     <span v-if="currentUser.username === comment.user.username && !isEditing">
@@ -38,7 +38,6 @@ export default {
         commentPk : this.comment.pk,
         content : this.comment.content
       }
-      
     }
   },
   computed: {

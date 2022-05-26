@@ -1,8 +1,8 @@
 <template>
   <div>
     <div id="map" class="map"></div>
-    <b-button @click="initMap">이거 눌러바</b-button>
-    <b-button @click='geofind'>위치찾기</b-button>
+    <b-button @click="initMap" class="mx-1">영화관 찾기</b-button>
+    <b-button @click='geofind'>위치전송</b-button>
   </div>
 </template>
 
@@ -59,7 +59,7 @@ export default {
       var ps = new kakao.maps.services.Places(map); 
 
       // 키워드로 장소를 검색합니다
-      ps.keywordSearch('영화관', placesSearchCB, {useMapCenter:true, radius:3000}); 
+      ps.keywordSearch('영화관', placesSearchCB, {useMapCenter:true, radius:2000}); 
 
       // 키워드 검색 완료 시 호출되는 콜백함수 입니다
       function placesSearchCB (data, status) {

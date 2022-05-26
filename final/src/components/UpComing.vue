@@ -1,7 +1,7 @@
 <template>
 <div>
   <div>
-    <h2>곧 개봉작</h2>
+    <h1><span class="badge rounded-pill bg-light text-dark">개봉예정작</span></h1>
     <div id="recommend" class="h-50">
       <split-carousel
       
@@ -18,7 +18,7 @@
     </div>
   </div>
   <div>
-    <h2>상영작</h2>
+    <h1><span class="badge rounded-pill bg-light text-dark mt-3">상영작</span></h1>
         <div id="recommend" class="h-50">
       <split-carousel
       play-direction="rtl"

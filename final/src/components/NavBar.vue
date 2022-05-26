@@ -19,26 +19,32 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
           </form>
           <button class="mx-3" @click="darkModeToggle">darkMode</button>
-          <b-icon icon="sliders" font-scale="3" v-b-toggle.sidebar-backdrop></b-icon>
-
-
+          <b-avatar :src="url + profile.profile_img" v-b-toggle.sidebar-backdrop size="5rem"></b-avatar>
 
         <b-sidebar
           id="sidebar-backdrop"
-          title="Profile"
           :backdrop-variant="variant"
           backdrop
           shadow  
           right="True"
         >
         <div v-if="isLoggedIn">
-          <router-link :to="{ name: 'profile', params: { username } }">profile</router-link>
+          <br>
+          <router-link :to="{ name: 'profile', params: { username } }">
+          <!-- <b-list-group-item class="d-flex align-items-center justify-content-between">
+            <b-avatar variant="info" :src="url + profile.profile_img" class="mr-4"></b-avatar>
+            <span class="mr-auto">{{ profile.username }}</span>
+            <span class="badge bg-light text-dark">{{ profile.like_movies.length }}</span>
+          </b-list-group-item> -->
+          </router-link>
           <log-out></log-out>
         </div>
         <div v-else>
           <router-link  to="/login">login</router-link>
         </div>
-
+        <br>
+        <br>
+        <br>
         <map-item></map-item>         
         </b-sidebar>
         </b-navbar-nav>
@@ -67,7 +73,8 @@ export default {
   data() {
     return {
       variant: 'dark',
-      keyword: ''
+      keyword: '',
+      url : "http://127.0.0.1:8000",
     }
   },
   computed :{

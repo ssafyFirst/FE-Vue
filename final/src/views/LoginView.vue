@@ -1,8 +1,8 @@
 <template>
-<div class="login-wrapper hybrid-login-wrapper">
-  <div class="login-wrapper-background">
-    <img class="w-100 h-100" :src="url+path" alt="">
-  </div>
+<div class="login-wrapper hybrid-login-wrapper"
+:style="{ 'background-image': 'url(' + url + path + ')',
+  'background-size': 'cover', 'width': '100vw', 'height': '100vh'}"
+>
   <b-container style="height: 100vh">
     <div class="position-absolute top-0  translate-middle-x pt-5">
       <img src="@/assets/logo22.png" alt="Logo" class="pt-5" />
@@ -35,11 +35,13 @@
           />
         </div>
         <div class="d-grid gap-2">
-          <b-button @click="login(credentials)" class="btn-login btn-block mt-2">LOGIN</b-button>
+          <b-button @click="login(credentials)" class="btn-login btn-block mt-2" variant="primary">LOGIN</b-button>
           <router-link
             :to="{ name: 'signup' }"
             class="text-decoration-none text-white float-end">
-            <b-button class="btn-signup mt-3 w-50">Signup</b-button>
+            <br>
+            <h6 class="d-flex justify-content-center">아직 회원이 아닌가요?</h6>
+            <b-button class="btn-signup w-30" style="display: block; margin: 0 auto">Signup</b-button>
           </router-link>      
         </div>  
       </div>
@@ -72,7 +74,7 @@ export default {
     axios({
       url:'https://api.themoviedb.org/3/movie/now_playing/',
       params:{
-        api_key:'7f292cc09a9aff763e3e54a81c1ec05a',
+        api_key: process.env.VUE_APP_TMDB_KEY,
         language:'ko'
       },
       method: 'get'

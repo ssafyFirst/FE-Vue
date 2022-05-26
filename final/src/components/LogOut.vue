@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="logout" v-if="isLoggedIn">logout</button>
+    <b-button @click="logout" v-if="isLoggedIn" variant="danger" class="fixed-bottom">logout</b-button>
   </div>
 </template>
 
