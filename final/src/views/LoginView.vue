@@ -10,6 +10,7 @@
 
     <div
       class="text-white h-100 d-flex align-items-center justify-content-center"
+      style="opacity: 0.8;"
     >
       <div style="background-color: #26282b" class="rounded p-5 w-50">
         <div class="text-start">

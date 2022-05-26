@@ -2,7 +2,7 @@
   <div>
     <div id="map" class="map"></div>
     <b-button @click="initMap" class="mx-1">영화관 찾기</b-button>
-    <b-button @click='geofind'>위치전송</b-button>
+    <b-button @click="geofind">위치전송</b-button>
   </div>
 </template>
 
@@ -112,6 +112,7 @@ export default {
     }
   },
   created() {
+    this.geofind(),
     this.geofind(),
     this.initMap()
   }
