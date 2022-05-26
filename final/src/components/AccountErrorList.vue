@@ -3,7 +3,7 @@
     <p v-for="(errors, field) in authError" :key="field">
       <ul>
         <li v-for="(error, idx) in errors" :key="idx">
-          <p>아이디 혹은 비밀번호가 일치하지 않습니다.</p>
+          {{ error }}
         </li>
       </ul>
     </p>
