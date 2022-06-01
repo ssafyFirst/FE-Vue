@@ -8,7 +8,7 @@ import SignupMoreView from '@/views/SignupMoreView.vue'
 import ProfileView from '@/views/ProfileView.vue'
 import MovieDetailView from '@/views/MovieDetailView.vue'
 import RecommendMovieView from '@/views/RecommendMovieView.vue'
-import ActorListView from '@/views/ActorListView'
+// import ActorListView from '@/views/ActorListView'
 import ActorDetailView from '@/views/ActorDetailView'
 import SearchMovieView from '@/views/SearchMovieView.vue'
 
@@ -50,11 +50,11 @@ const routes = [
     name: 'recommend',
     component: RecommendMovieView
   },
-  {
-    path: '/actors',
-    name: 'actors',
-    component: ActorListView
-  },
+  // {
+  //   path: '/actors',
+  //   name: 'actors',
+  //   component: ActorListView
+  // },
   {
     path: '/actor/:actorId',
     name: 'actordetail',
