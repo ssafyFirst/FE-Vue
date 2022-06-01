@@ -43,16 +43,15 @@
           </b-form-group>
 
           <b-form-file
-          class="mt-3"
+          class="mt-5"
           @change.prevent="selectFile"
           :state="Boolean(file1)"
           accept=".jpg, .png, .gif"
           placeholder="Choose a file or drop it here..."
           drop-placeholder="Drop file here...">
           </b-form-file>
-        <!-- <input type="file" ref="file" @change.prevent="selectFile"> -->
-
-          <b-form-group label="좋아하는 장르를 고르세요" id="input-group-4" v-slot="{ ariaDescribedby }">
+          <p class="mt-4 fw-bold h5">💖좋아하는 장르를 고르세요💖</p>
+          <b-form-group id="input-group-4" v-slot="{ ariaDescribedby }" style="border: 2px solid purple;">
             <b-form-checkbox-group
               v-model="mygenres"
               id="checkboxes-4"
@@ -62,6 +61,8 @@
               :aria-describedby="ariaDescribedby"
               size="lg"
               plain
+              class="w-50"
+              style="margin: 0 auto"
             >
             <b-form-invalid-feedback :state="state">Please select three</b-form-invalid-feedback>
             <b-form-valid-feedback :state="state">Thank you</b-form-valid-feedback>  

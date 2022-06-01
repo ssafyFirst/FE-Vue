@@ -1,8 +1,7 @@
 <template>
   <b-card class="square one">
     <router-link :to="{ name: 'moviedetail', params: {movieId:movie.id} }">
-    <b-card-img :src="url+movie.poster_path" alt=""
-    @mouseenter="showDetail"
+    <b-card-img :src="url + movie.poster_path" alt=""
     style="height: 300px; width: 200px;"
     ></b-card-img>
     </router-link>
@@ -22,12 +21,7 @@ export default {
   },
   props: {
     movie:Object
-  },
-  methods:{
-    showDetail () {
-    }
   }
-
 }
 
 </script>
@@ -38,7 +32,6 @@ export default {
   background-position: center!important;
   display: inline-block;
   transition: all 0.4s linear;
-  /* position: relative; */
 }
 
 .square img:hover {
@@ -65,12 +58,4 @@ export default {
   border-radius: 0 0 10px 10px;
   transition: opacity 300ms ease-out, border-radius 200ms ease-out;
 }
-
-/* .square:hover::after {
-  opacity: 1;
-}
-
-.square.one::after {
-  content: 'Never Gonna Give You Up!';
-} */
 </style>

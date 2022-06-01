@@ -4,10 +4,6 @@
   'background-size': 'cover', 'width': '100vw', 'height': '100vh'}"
 >
   <b-container style="height: 100vh">
-    <div class="position-absolute top-0  translate-middle-x pt-5">
-      <img src="@/assets/logo22.png" alt="Logo" class="pt-5" />
-    </div>
-
     <div
       class="text-white h-100 d-flex align-items-center justify-content-center"
       style="opacity: 0.8;"
