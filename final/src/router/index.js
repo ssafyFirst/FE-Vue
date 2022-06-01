@@ -11,6 +11,7 @@ import RecommendMovieView from '@/views/RecommendMovieView.vue'
 // import ActorListView from '@/views/ActorListView'
 import ActorDetailView from '@/views/ActorDetailView'
 import SearchMovieView from '@/views/SearchMovieView.vue'
+import PageNotFound from '@/views/PageNotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -65,6 +66,11 @@ const routes = [
     name: 'search',
     component: SearchMovieView
   },
+  {
+    path: '*',
+    name: 'not found',
+    component: PageNotFound
+  }
   
 ]
 
